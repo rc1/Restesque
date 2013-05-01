@@ -64,7 +64,7 @@ routes.push(new Route("get", "/server/crash/", function (ws, messageJSON, route,
     process.exit();
 }));
 //  {"method":"put","resource":"/server/broadcast/","body":"whatever"}
-routes.push(new Route("post", "/server/broadcast/", function (ws, messageJSON, route, responce) {
+routes.push(new Route("put", "/server/broadcast/", function (ws, messageJSON, route, responce) {
     responce.body = messageJSON.body;
     ws.send(JSON.stringify(responce));
     delete responce.token;
