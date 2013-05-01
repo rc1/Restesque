@@ -2,29 +2,39 @@
 
 ## To install
 
-    git clone git@github.com:rc1/WebSocketTestServer.git
-    cd WebSocketTestServer
-    npm install
-     
+```bash
+git clone git@github.com:rc1/WebSocketTestServer.git
+cd WebSocketTestServer
+npm install
+```
 
 ### Starting
 
-    node app.websocketserver.js
+```bash
+node app.websocketserver.js
+```
 
 #### Optional command line arguments
 
-    Usage: app.testwebsocketserver.js [options]
+```bash
+Usage: app.testwebsocketserver.js [options]
 
-    Options:
+Options:
 
-    -h, --help                     output usage information
-    -p, --port [number]            Port
-    -h, --htmlPage                 Serve WebSocket HTML client test page
-    -s, --heartbeatSpeed [number]  Hearbeat speed
-    --disableHeartbeat             Disables periodic sending of heatbeats
-    
+-h, --help                     output usage information
+-p, --port [number]            Port
+-h, --htmlPage                 Serve WebSocket HTML client test page
+-s, --heartbeatSpeed [number]  Hearbeat speed
+--disableHeartbeat             Disables periodic sending of heatbeats
+```
 
-To start the server with an 
+### HTML test client webpage
+
+To start the server with a web page featuring has a text client run with: 
+
+```bash
+node app.testwebsocketserver.js
+```
 
 ## Concept
 Allow clients to connect the send and receive JSON messages. 
@@ -33,48 +43,60 @@ Clients can send __request__ messages by sending a small JSON string. Each messa
 
 The structure of a request follows this format
 
-    {   
-        "method" : "get", // or "post" 
-        "resource" : "/some/urls",
-        "body" : ..., // any kind of content
-        "token" : "0123"
-    }
+```json
+{   
+    "method" : "get", // or "post" 
+    "resource" : "/some/urls",
+    "body" : ..., // any kind of content
+    "token" : "0123"
+}
+```
 
 ## Resources
 ### Getting a count of all clients
 #### Request
 To get a list of all clients, send the server the following string:
 
-    {"method":"get","resource":"/clients/count/"}
+```
+{"method":"get","resource":"/clients/count/"}
+```
 
 Which is:
 
-    {
-        "method" : "get",
-        "resource" : "/clients/count/"
-    }
+```json
+{
+    "method" : "get",
+    "resource" : "/clients/count/"
+}
+```
 
 #### Response
 
-    {
-        "resource" : "/clients/count/",
-        "body" : {
-            "clientCount" : 1
-        }
+```json
+{
+    "resource" : "/clients/count/",
+    "body" : {
+        "clientCount" : 1
     }
+}
+```
 
 ### Crash the server
 #### Request
 Useful for testing! To crash it send the following string:
 
-     {"method":"get","resource":"/crash/"}
+```
+{"method":"get","resource":"/crash/"}
+```
 
 Which is:
 
-    {
-        "method" : "get",
-        "resource" : "/crash/"
-    }
+```json
+{
+    "method" : "get",
+    "resource" : "/crash/"
+}
+```
 
 #### Response
 
@@ -85,15 +107,19 @@ Erm, none. It crashed.
 
 To send a message to all connected clients, send the following string:
 
-    {"method":"post","resource":"/broadcast/","body":"whatever"}
+```
+{"method":"post","resource":"/broadcast/","body":"whatever"}
+```
 
 Which is:
 
-    {
-        "method" : "post",
-        "resource" : "/broadcast/",
-        "body" : "whatever"
-    }
+```json
+{
+    "method" : "post",
+    "resource" : "/broadcast/",
+    "body" : "whatever"
+}
+```
 
 Whatever may be anything.
 
@@ -101,10 +127,12 @@ Whatever may be anything.
 
 The following will be send to all connected clients:
 
-    {
-        "resource" : "/broadcast/",
-        "body" : "whatever"
-    }
+```json
+{
+    "resource" : "/broadcast/",
+    "body" : "whatever"
+}
+```
 
 _If the request send by the client has a token, the response to the client will contain the token, but the broadcast to other clients will not contain the token._
 
@@ -114,6 +142,17 @@ Tokens, which are optional and may be of any format, will be sent back in respon
 
 ## Heartbeat
 
-Clients will be periodically send a heartbeat message. The heartbeat message has a counter when counts from 0 to 100000;
+Clients will be periodically send a heartbeat message. The heartbeat message has a counter when counts from 0 to 100000.
+
+The message is as follows:
+
+```json
+{
+    "heartbeat" : {
+        "speed" : "1000",
+        "count" : "4"
+    }
+}
+```
 
 

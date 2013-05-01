@@ -119,7 +119,7 @@ function logClientCount() {
 function heartbeat() {
     clients.forEach(function (clientInfo) {
         if (!clientInfo.errored) {
-            clientInfo.ws.send('{"heartbeat":{"speed":"'+heartbeatSpeed+'","count":"'+heartBeatCounter+'"}}');
+            clientInfo.ws.send('{"heartbeat":{"speed"key: "value", "'+heartbeatSpeed+'","count":"'+heartBeatCounter+'"}}');
             if (++heartBeatCounter > 100000) {
                 heartBeatCounter = 0;
             }
