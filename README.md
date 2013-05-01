@@ -43,7 +43,7 @@ Clients can send __request__ messages by sending a small JSON string. Each messa
 
 The structure of a request follows this format
 
-```json
+```javascript
 {   
     "method" : "get", // or "post" 
     "resource" : "/some/urls",
