@@ -63,7 +63,7 @@ routes.push(new Route("get", "/server/clients/", function (ws, messageJSON, rout
 routes.push(new Route("get", "/server/crash/", function (ws, messageJSON, route, responce) {
     process.exit();
 }));
-//  {"method":"post","resource":"/server/broadcast/","body":"whatever"}
+//  {"method":"put","resource":"/server/broadcast/","body":"whatever"}
 routes.push(new Route("post", "/server/broadcast/", function (ws, messageJSON, route, responce) {
     responce.body = messageJSON.body;
     ws.send(JSON.stringify(responce));

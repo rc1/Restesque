@@ -17,7 +17,7 @@ node app.websocketserver.js
 #### Optional command line arguments
 
 ```bash
-Usage: app.testwebsocketserver.js [options]
+Usage: app.restwebsocketserver.js [options]
 
 Options:
 
@@ -43,13 +43,13 @@ _Connect to ws://websockets.workers.io/_
 ## Concept
 Allow clients to connect the send and receive JSON messages. 
 
-Clients can send __request__ messages by sending a small JSON string. Each messages should contain a __method__ parameter (`get` or `post`) and a __resource__ address. It may also optionally contain a __token__ and/or __body__ parameter.
+Clients can send __request__ messages by sending a small JSON string. Each messages should contain a __method__ parameter (`get`, `post`, or `put`) and a __resource__ address. It may also optionally contain a __token__ and/or __body__ parameter.
 
 The structure of a request follows this format
 
 ```javascript
 {   
-    "method" : "get", // or "post" 
+    "method" : "get", // "post" or "put"
     "resource" : "/some/urls",
     "body" : ..., // any kind of content
     "token" : "0123"
@@ -112,14 +112,14 @@ Erm, none. It crashed.
 To send a message to all connected clients, send the following string:
 
 ```
-{"method":"post","resource":"/server/broadcast/","body":"whatever"}
+{"method":"put","resource":"/server/broadcast/","body":"whatever"}
 ```
 
 Which is:
 
 ```json
 {
-    "method" : "post",
+    "method" : "put",
     "resource" : "/server/broadcast/",
     "body" : "whatever"
 }
