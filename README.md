@@ -147,7 +147,7 @@ Tokens, which are optional and may be of any format, will be sent back in respon
 
 ## Heartbeat
 
-Clients will be periodically send a heartbeat message. The heartbeat message has a counter when counts from 0 to 100000.
+Clients will be periodically send a heartbeat message. The heartbeat message has a counter which counts from 0 to 100000.
 
 The message is as follows:
 
