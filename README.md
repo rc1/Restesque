@@ -39,7 +39,7 @@ node app.restesque.js
 ```
 
 An example of the test client page, which may be used on any web socket server, can be found here:  
-[http://restesque.workers.io/](http://restesque.workers.io/#ws%3A%2F%restesque.workers.io) _then connect to ws://restesque.workers.io/_
+[http://restesque.workers.io/](http://restesque.workers.io/#ws%3A%2F%2Frestesque.workers.io) _then connect to ws://restesque.workers.io/_
 
 ## Concept
 Allow clients to connect the send and receive JSON messages. 
