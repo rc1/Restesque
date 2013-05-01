@@ -36,8 +36,8 @@ To start the server with a web page featuring has a text client run with:
 node app.testwebsocketserver.js
 ```
 
-An example of the test client page can be found here:  
-[http://websockets.workers.io/](http://websockets.workers.io/)  
+An example of the test client page, which may be used on any web socket server, can be found here:  
+[http://websockets.workers.io/](http://websockets.workers.io/#ws%3A%2F%2Fwebsockets.workers.io)  
 _Connect to ws://websockets.workers.io/_
 
 ## Concept
