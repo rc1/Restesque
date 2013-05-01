@@ -23,9 +23,9 @@ Options:
 
 -h, --help                     output usage information
 -p, --port [number]            Port
--h, --htmlPage                 Serve WebSocket HTML client test page
--s, --heartbeatSpeed [number]  Hearbeat speed
---disableHeartbeat             Disables periodic sending of heatbeats
+-c, --clientHtmlPage           Serve WebSocket HTML client test page
+-s, --heartbeatSpeed [number]  Heatbeat speed
+-b, --subscribeAllToHeartbeat  Subscribes all new client to hearbeats
 ```
 
 ### HTML test client webpage
@@ -62,7 +62,7 @@ The structure of a request follows this format
 To get a list of all clients, send the server the following string:
 
 ```
-{"method":"get","resource":"/clients/count/"}
+{"method":"get","resource":"/server/clients/"}
 ```
 
 Which is:
@@ -70,7 +70,7 @@ Which is:
 ```json
 {
     "method" : "get",
-    "resource" : "/clients/count/"
+    "resource" : "/server/clients/"
 }
 ```
 
@@ -78,9 +78,9 @@ Which is:
 
 ```json
 {
-    "resource" : "/clients/count/",
+    "resource" : "/server/clients/",
     "body" : {
-        "clientCount" : 1
+        "count" : 2
     }
 }
 ```
@@ -90,7 +90,7 @@ Which is:
 Useful for testing! To crash it send the following string:
 
 ```
-{"method":"get","resource":"/crash/"}
+{"method":"get","resource":"/server/crash/"}
 ```
 
 Which is:
@@ -98,7 +98,7 @@ Which is:
 ```json
 {
     "method" : "get",
-    "resource" : "/crash/"
+    "resource" : "/server/crash/"
 }
 ```
 
@@ -112,7 +112,7 @@ Erm, none. It crashed.
 To send a message to all connected clients, send the following string:
 
 ```
-{"method":"post","resource":"/broadcast/","body":"whatever"}
+{"method":"post","resource":"/server/broadcast/","body":"whatever"}
 ```
 
 Which is:
@@ -120,7 +120,7 @@ Which is:
 ```json
 {
     "method" : "post",
-    "resource" : "/broadcast/",
+    "resource" : "/server/broadcast/",
     "body" : "whatever"
 }
 ```
@@ -133,7 +133,7 @@ The following will be send to all connected clients:
 
 ```json
 {
-    "resource" : "/broadcast/",
+    "resource" : "/server/broadcast/",
     "body" : "whatever"
 }
 ```
@@ -152,8 +152,8 @@ The message is as follows:
 
 ```json
 {
-    "heartbeat" : {
-        "speed" : "1000",
+    "resource" : "/heartbeat/1000/",
+    "body" : {
         "count" : "4"
     }
 }

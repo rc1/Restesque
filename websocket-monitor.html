@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Socket Tester</title>
-        <style>body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquote,th,td{margin:0;padding:0;}
+<!DOCTYPE html><html><head><title>Socket Tester</title><style>body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquote,th,td{margin:0;padding:0;}
 table{border-collapse:collapse;border-spacing:0;}
 fieldset,img{border:0;}
 address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
 ol,ul {list-style:none;}
 caption,th {text-align:left;}
 h1,h2,h3,h4,h5,h6{font-size:100%;}
-q:before,q:after{content:'';}</style>
-        <style>body { font-family: Monaco, Consolas, "Lucida Console", monospace; font-size: 9px; }
-header { background-color: #eae3cc; padding: 4px; }
-.messaging { width:100%; background-color: #f5ecd5; padding: 4px; }
+q:before,q:after{content:'';}</style><style>body { font-family: Monaco, Consolas, "Lucida Console", monospace; font-size: 9px; }
+header { background-color: #eae3cc; padding: 4px; border-bottom: 1px solid #819090; }
+.messaging { width:100%; background-color: #f5ecd5; border-bottom: 1px solid #819090; }
 #console { background-color: #fdf6e3; }
 li { border-bottom: 1px solid #819090; }
 .url { width: 400px; }
@@ -22,9 +17,9 @@ li { border-bottom: 1px solid #819090; }
 .good { background-color: #93ed7d; }
 .bad { background-color: #ff5668; }
 .neutral { background-color: #c4d4d3; }
-.hidden { display: none; }</style>
-        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-        <script>$(function () {
+.hidden { display: none; }
+input, textarea { vertical-align: top; margin-left: 4px; }
+</style><script src="http://code.jquery.com/jquery-1.9.1.min.js"></script><script>$(function () {
     // Populate
     if (window.location.hash) {
         $(".url").val(decodeURIComponent(window.location.hash).replace("#",""));
@@ -52,8 +47,7 @@ li { border-bottom: 1px solid #819090; }
         logMessages.push($newLog);
     }
     function getNow() {
-        return ""+now.getHours()+":"+now.getMinutes()+":"+((now.getSeconds()
-            <10)?"0"+now.getSeconds():now.getSeconds());
+        return ""+now.getHours()+":"+now.getMinutes()+":"+((now.getSeconds()<10)?"0"+now.getSeconds():now.getSeconds());
     }
     // Web Sockets
     var ws;
@@ -115,30 +109,4 @@ li { border-bottom: 1px solid #819090; }
         ws.send(message);
         addLogItem("Sent: "+message, "neutral");
     })
-});
-            </script>
-        </head>
-        <body>
-            <header>
-                <form>
-                    <input type="text" placeholder="url" class="url">
-                        <input type="submit" value="connect" class="connect">
-                        </form>
-                    </header>
-                    <div class="messaging hidden">
-                        <form>
-                            <input type="message" placeholder="message" class="message">
-                                <input type="submit" value="send" class="send">
-                                </form>
-                            </div>
-                            <div id="console">
-                                <ul>
-                                    <li class="hidden">
-                                        <span class="timestamp"></span>
-                                        <span class="spacer">&mdash;</span>
-                                        <span class="content"></span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </body>
-                    </html>
+});</script></head><body> <header> <form><input type="text" placeholder="url" class="url"><input type="submit" value="connect" class="connect"></form></header><div class="messaging hidden"><form><textarea placeholder="message" class="message"></textarea><input type="submit" value="send" class="send"></form></div><div id="console"><ul>               <li class="hidden"><span class="timestamp"> </span><span class="spacer">&mdash;</span><span class="content"> </span></li></ul></div></body></html>

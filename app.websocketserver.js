@@ -1,7 +1,7 @@
 var port = 8010;
-var disableHeartbeat = false;
+var useHeartbeat = false;
 var heartbeatSpeed = 1000;
-var serverHtmlPage = false;
+var clientHtmlPage = false;
 
 // core modules
 var _ = require("underscore");
@@ -11,13 +11,13 @@ var WebSocketServer = require('ws').Server;
 var program = require('commander');
 program
     .option('-p, --port [number]', 'Port')
-    .option('-h, --htmlPage', 'Serve WebSocket HTML client test page')
-    .option('-s, --heartbeatSpeed [number]', 'Hearbeat speed')
-    .option('--disableHeartbeat', 'Disable periodic sending of hearbeats')
+    .option('-c, --clientHtmlPage', 'Serve WebSocket HTML client test page')
+    .option('-s, --heartbeatSpeed [number]', 'Heatbeat speed')
+    .option('-b, --subscribeAllToHeartbeat', 'Subscribes all new client to hearbeats')
     .parse(process.argv);
 
-if (program.htmlPage) { serverHtmlPage = true; }
-if (program.disableHeartbeat) { disableHeartbeat = true; }
+if (typeof program.subscribeAllToHeartbeat !== "undefined") { useHeartbeat = program.subscribeAllToHeartbeat; }
+if (typeof program.clientHtmlPage !== "undefined") { clientHtmlPage = program.clientHtmlPage; }
 if (typeof program.port === "string" || program.port === "number") {
     port = parseInt(program.port,10);
 }
@@ -27,7 +27,7 @@ if (typeof program.heartbeatSpeed === "string" || program.heartbeatSpeed === "nu
 
 // server creation
 var wss;
-if (serverHtmlPage) { 
+if (clientHtmlPage) { 
     var http = require('http');
     var fs = require('fs');
     var htmlPage = fs.readFileSync("websocket-monitor.html");
@@ -48,23 +48,23 @@ var clients = [];
 var idCounter = 0;
 
 // start the heat beat
-if (!disableHeartbeat) {
+if (useHeartbeat) {
     heartbeat();
 }
 
 // routing
 var routes = [];
-//  {"method":"get","resource":"/clients/count/"}
-routes.push(new Route("get", "/clients/count/", function (ws, messageJSON, route, responce) {
+//  {"method":"get","resource":"/server/clients/"}
+routes.push(new Route("get", "/server/clients/", function (ws, messageJSON, route, responce) {
     responce.body.clientCount = clientCount;
     ws.send(JSON.stringify(responce));
 }));
-//  {"method":"get","resource":"/crash/"}
-routes.push(new Route("get", "/crash/", function (ws, messageJSON, route, responce) {
+//  {"method":"get","resource":"/server/crash/"}
+routes.push(new Route("get", "/server/crash/", function (ws, messageJSON, route, responce) {
     process.exit();
 }));
-//  {"method":"post","resource":"/broadcast/","body":"whatever"}
-routes.push(new Route("post", "/broadcast/", function (ws, messageJSON, route, responce) {
+//  {"method":"post","resource":"/server/broadcast/","body":"whatever"}
+routes.push(new Route("post", "/server/broadcast/", function (ws, messageJSON, route, responce) {
     responce.body = messageJSON.body;
     ws.send(JSON.stringify(responce));
     delete responce.token;
@@ -119,7 +119,7 @@ function logClientCount() {
 function heartbeat() {
     clients.forEach(function (clientInfo) {
         if (!clientInfo.errored) {
-            clientInfo.ws.send('{"heartbeat":{"speed"key: "value", "'+heartbeatSpeed+'","count":"'+heartBeatCounter+'"}}');
+            clientInfo.ws.send('{"resource":"/heartbeat/1000/","body":{"count":"'+heartBeatCounter+'"}}');
             if (++heartBeatCounter > 100000) {
                 heartBeatCounter = 0;
             }
