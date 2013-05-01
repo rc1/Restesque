@@ -1,31 +1,33 @@
 # Basic REST-esque WebSocket Test Server
 
+__Version 0.0.1__
+
 ## To install
 
 ```bash
-git clone git@github.com:rc1/WebSocketTestServer.git
-cd WebSocketTestServer
+git clone git@github.com:rc1/Restesque.git
+cd Restesque
 npm install
 ```
 
 ### Starting
 
 ```bash
-node app.websocketserver.js
+node app.restesque.js
 ```
 
 #### Optional command line arguments
 
 ```bash
-Usage: app.restwebsocketserver.js [options]
+Usage: app.restesque.js [options]
 
 Options:
 
 -h, --help                     output usage information
--p, --port [number]            Port
--c, --clientHtmlPage           Serve WebSocket HTML client test page
--s, --heartbeatSpeed [number]  Heatbeat speed
--b, --subscribeAllToHeartbeat  Subscribes all new client to hearbeats
+-p, --port [number]            port
+-c, --clientHtmlPage           serve HTML monitor webpage
+-s, --heartbeatSpeed [number]  heatbeat speed
+-b, --subscribeAllToHeartbeat  subscribes all new client to hearbeats
 ```
 
 ### HTML test client webpage
@@ -33,12 +35,11 @@ Options:
 To start the server with a web page featuring has a text client run with: 
 
 ```bash
-node app.testwebsocketserver.js
+node app.restesque.js
 ```
 
 An example of the test client page, which may be used on any web socket server, can be found here:  
-[http://websockets.workers.io/](http://websockets.workers.io/#ws%3A%2F%2Fwebsockets.workers.io)  
-_Connect to ws://websockets.workers.io/_
+[http://restesque.workers.io/](http://restesque.workers.io/#ws%3A%2F%restesque.workers.io) _then connect to ws://restesque.workers.io/_
 
 ## Concept
 Allow clients to connect the send and receive JSON messages. 

@@ -10,10 +10,10 @@ var WebSocketServer = require('ws').Server;
 // options parsing
 var program = require('commander');
 program
-    .option('-p, --port [number]', 'Port')
-    .option('-c, --clientHtmlPage', 'Serve WebSocket HTML client test page')
-    .option('-s, --heartbeatSpeed [number]', 'Heatbeat speed')
-    .option('-b, --subscribeAllToHeartbeat', 'Subscribes all new client to hearbeats')
+    .option('-p, --port [number]', 'port')
+    .option('-c, --clientHtmlPage', 'serve HTML monitor webpage')
+    .option('-s, --heartbeatSpeed [number]', 'heatbeat speed')
+    .option('-b, --subscribeAllToHeartbeat', 'subscribes all new client to hearbeats')
     .parse(process.argv);
 
 if (typeof program.subscribeAllToHeartbeat !== "undefined") { useHeartbeat = program.subscribeAllToHeartbeat; }
