@@ -5,6 +5,7 @@
   "dependencies": {
     "ws": "~0.4.25",
     "underscore": "~1.4.4",
-    "commander": "~1.1.1"
+    "commander": "~1.1.1",
+    "redis": "0.7.3"
   }
 }
