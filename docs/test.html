@@ -37,5 +37,244 @@
   <body>
     <h1>DevicePositionTracker</h1>
     <p>The DevicePositionTracker test suite.</p>
+    <section class="suite">
+      <h1>Restesque</h1>
+      <dl>
+        <section class="suite">
+          <h1>Restesque</h1>
+          <dl>
+            <dt>can be initialised</dt>
+            <dd><pre><code>var restesque = new Restesque();
+expect(restesque).to.be.ok;</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>Router</h1>
+      <dl>
+        <section class="suite">
+          <h1>Routes</h1>
+          <dl>
+            <dt>can be initialised</dt>
+            <dd><pre><code>var router = new Router();
+expect(router).to.be.ok;</code></pre></dd>
+Using redis db 4
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>#map</h1>
+          <dl>
+            <dt>Basic map returns route</dt>
+            <dd><pre><code>expect( router.map(&quot;somewhere&quot;) ).to.be.ok;</code></pre></dd>
+            <dt>Params map returns route</dt>
+            <dd><pre><code>expect( router.map(&quot;/:somewhere/&quot;) ).to.be.ok;</code></pre></dd>
+            <dt>Params map returns route with method</dt>
+            <dd><pre><code>expect( router.map(&quot;/:somewhere/&quot;, &quot;GET&quot;) ).to.be.ok;</code></pre></dd>
+            <dt>Params map returns route with method</dt>
+            <dd><pre><code>expect( router.map(&quot;/:somewhere/&quot;, [&quot;GET&quot;,&quot;POST&quot;]) ).to.be.ok;</code></pre></dd>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>Triggering (not testing params result)</h1>
+          <dl>
+            <section class="suite">
+              <h1>Plain route no method</h1>
+              <dl>
+                <dt>should trigger</dt>
+                <dd><pre><code>router.trigger('/', null, 'boom');
+setTimeout(done, 1);</code></pre></dd>
+                <dt>should have matched</dt>
+                <dd><pre><code>expect(result).to.equal(&quot;plain jane&quot;);
+expect(resultParams).to.deep.equal({});
+expect(extraArgTest).to.equal('boom');</code></pre></dd>
+              </dl>
+            </section>
+            <section class="suite">
+              <h1>Plain route multi map</h1>
+              <dl>
+                <dt>should trigger</dt>
+                <dd><pre><code>router.trigger('/plain/', null, 'boom');
+setTimeout(done, 1);</code></pre></dd>
+                <dt>should have matched</dt>
+                <dd><pre><code>expect(result).to.equal(&quot;plain jane&quot;);
+expect(resultParams).to.deep.equal({});
+expect(extraArgTest).to.equal('boom');</code></pre></dd>
+              </dl>
+            </section>
+            <section class="suite">
+              <h1>GET with 1 params</h1>
+              <dl>
+                <dt>should trigger</dt>
+                <dd><pre><code>router.trigger('/woop/', 'GET', 'town');
+setTimeout(done, 1);</code></pre></dd>
+                <dt>should have matched</dt>
+                <dd><pre><code>expect(result).to.equal(&quot;get worked&quot;);
+expect(resultParams).to.deep.equal({service:'woop'});</code></pre></dd>
+              </dl>
+            </section>
+            <section class="suite">
+              <h1>DELETE with 1 params</h1>
+              <dl>
+                <dt>should trigger</dt>
+                <dd><pre><code>router.trigger('/hoop/', 'DELETE', 'rats').onAllCallbacksDidNext(function () {
+    didAllNext = &quot;did all next&quot;;
+    done();
+});</code></pre></dd>
+                <dt>should have matched</dt>
+                <dd><pre><code>expect(result).to.equal(&quot;delete or subscribe worked&quot;);
+expect(resultParams).to.deep.equal({service:'hoop'});
+expect(didAllNext).to.equal(&quot;did all next&quot;);</code></pre></dd>
+              </dl>
+            </section>
+            <section class="suite">
+              <h1>SUBSCRIBE with 1 params</h1>
+              <dl>
+                <dt>should trigger</dt>
+                <dd><pre><code>router.trigger('/shoop/', 'SUBSCRIBE', 'rats');
+setTimeout(done, 0);</code></pre></dd>
+                <dt>should have matched</dt>
+                <dd><pre><code>expect(result).to.equal(&quot;delete or subscribe worked&quot;);
+expect(resultParams).to.deep.equal({service:'shoop'});</code></pre></dd>
+              </dl>
+            </section>
+            <section class="suite">
+              <h1>POST with 2 params</h1>
+              <dl>
+                <dt>should trigger</dt>
+                <dd><pre><code>router.trigger('/space/cadet/', 'POST', 'led', 'zepplin');
+setTimeout(done, 0);</code></pre></dd>
+                <dt>should have matched</dt>
+                <dd><pre><code>expect(result).to.equal(&quot;post with id worked&quot;);
+expect(resultParams).to.deep.equal({service:'space', id:'cadet'});
+expect(extraArgTest).to.equal(&quot;led&quot;);
+expect(extraExtraArgTest).to.equal(&quot;zepplin&quot;);</code></pre></dd>
+              </dl>
+            </section>
+            <section class="suite">
+              <h1>POST with 3 params</h1>
+              <dl>
+                <dt>should trigger no match</dt>
+                <dd><pre><code>router.trigger('/space/cadet/boom/', 'POST').onNoMatch(function () {
+    result = &quot;noMatch&quot;;
+    done();
+});</code></pre></dd>
+                <dt>should call noMatch</dt>
+                <dd><pre><code>expect(result).to.equal(&quot;noMatch&quot;);</code></pre></dd>
+              </dl>
+            </section>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>Without inital slash</h1>
+          <dl>
+            <section class="suite">
+              <h1>Empty string map</h1>
+              <dl>
+                <dt>should trigger</dt>
+                <dd><pre><code>router.trigger('');
+setTimeout(done, 1);</code></pre></dd>
+                <dt>should have matched</dt>
+                <dd><pre><code>expect(result).to.equal(&quot;nothing&quot;);</code></pre></dd>
+              </dl>
+            </section>
+            <section class="suite">
+              <h1>Plain route no method</h1>
+              <dl>
+                <dt>should trigger</dt>
+                <dd><pre><code>router.trigger('something');
+setTimeout(done, 1);</code></pre></dd>
+                <dt>should have matched</dt>
+                <dd><pre><code>expect(result).to.equal(&quot;no slashes&quot;);</code></pre></dd>
+              </dl>
+            </section>
+            <section class="suite">
+              <h1>Plain route no method</h1>
+              <dl>
+                <dt>should trigger</dt>
+                <dd><pre><code>router.trigger('something/');
+setTimeout(done, 1);</code></pre></dd>
+                <dt>should have matched</dt>
+                <dd><pre><code>expect(result).to.equal(&quot;no leading slash, trailing slash&quot;);</code></pre></dd>
+              </dl>
+            </section>
+            <section class="suite">
+              <h1>Plain route no method</h1>
+              <dl>
+                <dt>should trigger</dt>
+                <dd><pre><code>router.trigger('something/else/');
+setTimeout(done, 1);</code></pre></dd>
+                <dt>should have matched</dt>
+                <dd><pre><code>expect(result).to.equal(&quot;no leading slash, trailing slash, 2 params&quot;);</code></pre></dd>
+              </dl>
+            </section>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>removeBaseFromUrl</h1>
+      <dl>
+        <section class="suite">
+          <h1>/api/something/</h1>
+          <dl>
+            <dt>should remove /api/</dt>
+            <dd><pre><code>expect( utils.removeBaseFromUrl(&quot;/api/&quot;, &quot;/api/something/&quot;) ).to.equal(&quot;something/&quot;);</code></pre></dd>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>/api/something/</h1>
+          <dl>
+            <dt>should remove /</dt>
+            <dd><pre><code>expect( utils.removeBaseFromUrl(&quot;/&quot;, &quot;/api/something/&quot;) ).to.equal(&quot;api/something/&quot;);</code></pre></dd>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>/not/there/something/</h1>
+          <dl>
+            <dt>should remove /</dt>
+            <dd><pre><code>expect( utils.removeBaseFromUrl(&quot;/api/&quot;, &quot;/not/there/something/&quot;) ).to.equal(&quot;/not/there/something/&quot;);</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
+    <section class="suite">
+      <h1>getActionsFromString</h1>
+      <dl>
+        <section class="suite">
+          <h1>/something/?hello</h1>
+          <dl>
+param { hello: true }
+            <dt>has truty hello</dt>
+            <dd><pre><code>var params = utils.getActionsFromString(&quot;/something/?hello&quot;);
+console.log(&quot;param&quot;, params);
+expect(params.hello).to.be.ok;</code></pre></dd>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>/something/?hello=ross</h1>
+          <dl>
+param { hello: 'ross' }
+            <dt>has ross for hello</dt>
+            <dd><pre><code>var params = utils.getActionsFromString(&quot;/something/?hello=ross&quot;);
+console.log(&quot;param&quot;, params);
+expect(params.hello).to.equal('ross');
+expect(params.something).to.be.not.ok;</code></pre></dd>
+          </dl>
+        </section>
+        <section class="suite">
+          <h1>/something/?fish=ross&amp;chip=good&amp;ok</h1>
+          <dl>
+param { fish: 'ross', chip: 'good', ok: true }
+            <dt>has ross, good and ok</dt>
+            <dd><pre><code>var params = utils.getActionsFromString(&quot;/something/?fish=ross&amp;chip=good&amp;ok&quot;);
+    console.log(&quot;param&quot;, params);
+    expect(params.fish).to.equal('ross');
+    expect(params.chip).to.equal('good');
+    expect(params.ok).to.be.ok;</code></pre></dd>
+          </dl>
+        </section>
+      </dl>
+    </section>
   </body>
 </html>

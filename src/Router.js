@@ -71,10 +71,12 @@ function RouterTriggerPromise(allCallbacksDidNext, onNoMatch) {
     this.allCallbacksDidNext = allCallbacksDidNext;
     this.onAllCallbacksDidNext = function (fn) {
         this.allCallbacksDidNext = fn;
+        return this;
     };
     this.noMatch = onNoMatch;
     this.onNoMatch = function (fn) {
         this.noMatch = fn;
+        return this;
     };
 }
 

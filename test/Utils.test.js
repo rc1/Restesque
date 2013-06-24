@@ -37,12 +37,13 @@ describe('getActionsFromString', function () {
             var params = utils.getActionsFromString("/something/?hello=ross");
             console.log("param", params);
             expect(params.hello).to.equal('ross');
+            console.log("params", params);
+            expect(params.something).to.be.not.ok;
         });
     });
     describe('/something/?fish=ross&chip=good&ok', function () {
         it('has ross, good and ok', function () {        
             var params = utils.getActionsFromString("/something/?fish=ross&chip=good&ok");
-            console.log("param", params);
             expect(params.fish).to.equal('ross');
             expect(params.chip).to.equal('good');
             expect(params.ok).to.be.ok;

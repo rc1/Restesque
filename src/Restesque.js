@@ -1,17 +1,10 @@
 var _ = require('underscore');
 var Router = require('./Router');
 var utils = require('./Utils');
+var action = require('./Actions');
 
 // # Redis
 var redis = require('redis');
-var client = redis.createClient();
-
-client.select(4, function() { 
-    console.log("Using redis db 4");
-});
-client.on("error", function (err) {
-    console.log("Redis Error " + err);
-});
 
 redis.RedisClient.prototype.parse_info = function (callback) {
     this.info(function (err, res) {
@@ -23,18 +16,38 @@ redis.RedisClient.prototype.parse_info = function (callback) {
                 obj[parts[0]] = parts[1];
             }
         });
-        callback(obj)
+        callback(obj);
     });
 };
+
 
 // # Restesque
 
 function Restesque(options) {
-    if (!options) { options = {}; }
+    var self = this;
+    
+    this.options = options || {};
+    this.options.redisDatabase = (typeof this.options.redisDatabase === 'undefined') ? 4 : this.options.redisDatabase;
 
-    this.router = new Router();
+    // ## Redis
+    
+    this.client = redis.createClient();
+    this.client.select(this.options.redisDatabase, function() { 
+        console.log("Using redis db 4");
+    });
+    this.client.on("error", function (err) {
+        console.log("Redis Error " + err);
+    });
+
+    function prepareDataForSave(data) {
+        if (typeof data === 'object') {
+            return JSON.stringify(data);
+        }
+        return data;
+    }   
 
     // ## Routing
+    this.router = new Router();
     this.router
 
         // ### Root
@@ -44,12 +57,15 @@ function Restesque(options) {
                 next();
             }, this)
             .to(function (params, data, res) {
-                console.log("data", data);
                 if (data.actions.children) {
-                    res.ok('"" worked with children');
+                    action.listAllServices(self.client)
+                        .onError(function (err, desciption) { console.log(err, desciption); res.error(desciption); })
+                        .onList(function (replies) { res.ok(replies); })
+                        .run();
                     return;
                 } else {
-                    client.parse_info(function (info) {
+                    // get info about redis
+                    self.client.parse_info(function (info) {
                         res.ok({
                             "redis" : info
                         });
@@ -64,29 +80,58 @@ function Restesque(options) {
                 next();
             }, this)
             .to(function (params, data, res) {
-                console.log("data", data);
                 if (data.actions.children) {
-                    res.ok('":service" worked with children');
+                    res.ok('@stub: ":service" worked with children');
                     return;
                 } else {
-                    res.ok('":service" worked');
+                    action.queryServiceExists(self.client, params.service)
+                        .onError(function (err, desciption) { console.log(err, desciption); res.error(desciption); })
+                        .onNo(function () { res.notFound('could not find '+params.service); })
+                        .onYes(function () {
+                            action.getServiceData(self.client, params.service)
+                                .onError(function (err, desciption) { console.log(err, desciption); res.error(desciption); })
+                                .onData(function (data) {
+                                    res.ok(data); 
+                                })
+                                .run();
+                        })
+                        .run();
                 }
             }, this)
 
+        .map(':service/', 'PUT')
         .map(':service/', 'POST')
             .to(function (params, data, res, next) {
                 next();
             }, this)
             .to(function (params, data, res) {
-               
-            }, this)
-
-        .map(':service/', 'OUT')
-            .to(function (params, data, res, next) {
-                next();
-            }, this)
-            .to(function (params, data, res) {
-                
+                var didExist = true;
+                action.queryServiceExists(self.client, params.service)
+                    .onError(function (err, desciption) { console.log(err, desciption); res.error(desciption); })
+                    .onNo(function (then) { 
+                        didExist = false;
+                        action.createService(self.client, params.service)
+                            .onError(function (err, desciption) { console.log(err, desciption); res.error(desciption); })
+                            .then(then)
+                            .run();
+                    })
+                    .then(function () {
+                        if (data.body) {
+                            action.setServiceData(self.client, params.service, data.body)
+                                .onError(function (err, desciption) { console.log(err, desciption); res.error(desciption); })
+                                .then(function () {
+                                    res.ok({
+                                        didExist: didExist
+                                    });
+                                })
+                                .run();
+                        } else {
+                            res.ok({
+                                didExist: didExist
+                            });
+                        }
+                    })
+                    .run();
             }, this)
 
         .map(':service/', 'DELETE')
@@ -94,7 +139,12 @@ function Restesque(options) {
                 next();
             }, this)
             .to(function (params, data, res) {
-                
+                action.deleteService(self.client, params.service)
+                    .onError(function (err, desciption) { console.log(err, desciption); res.error(desciption); })
+                    .then(function () {
+                        res.ok();
+                    })
+                    .run();
             }, this)
 
         .map(':service/', 'SUBSCRIBE')
@@ -273,21 +323,46 @@ Restesque.prototype.connectMiddleware = function(options) {
 
     return function (req, res, next) {
         var restesquePath = utils.removeBaseFromUrl(baseURL, req.path);
-        console.log("router trigger", self.router.trigger( 
+    
+        var data = {
+            actions : utils.getActionsFromString(req.originalUrl)
+        };
+
+        // only add data if it exists
+        if (req.body && Object.keys(req.body).length > 0) {
+            data.body = req.data;
+        }
+
+        self.router.trigger( 
             // path
             restesquePath, 
             // method
             req.method.toUpperCase(), 
             // data
-            {   body : req.body,
-                actions : utils.getActionsFromString(req.originalUrl)
-            }, 
+            data, 
             // res
             {   ok: function (message) {
-                    res.json(message);
+                    res.json({
+                        status: "ok",
+                        body: message
+                    });
+                },
+                notFound: function (message) {
+                    res.status(404);
+                    res.json({
+                        status: "not found",
+                        body: message
+                    });
+                },
+                error: function (message) {
+                    res.status(400);
+                    res.json({
+                        status: "error",
+                        body: message
+                    });
                 }
             }
-        ));
+        ).onNoMatch(next).onAllCallbacksDidNext(next);
     };
 };
 
