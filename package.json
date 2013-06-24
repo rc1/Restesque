@@ -6,6 +6,12 @@
     "ws": "~0.4.25",
     "underscore": "~1.4.4",
     "commander": "~1.1.1",
-    "redis": "0.7.3"
+    "redis": "0.7.3",
+    "express": "~3.2.6",
+    "optimist": "~0.5.2"
+  },
+  "devDependencies" : {
+    "chai": "~1.6.0",
+    "mocha": "~1.10.0"
   }
 }
