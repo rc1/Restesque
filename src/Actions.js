@@ -3,6 +3,7 @@
 
 module.exports = {
     listAllServices : listAllServices,
+    listAllIds : listAllIds,
     queryServiceExists : queryServiceExists,
     getServiceData : getServiceData,
     createService : createService,
@@ -11,6 +12,8 @@ module.exports = {
 };
 
 // # Actions
+
+// ## List
 
 function listAllServices(client) {
     var promise = new ActionPromise();
@@ -25,6 +28,22 @@ function listAllServices(client) {
     };
     return promise;
 }
+
+function listAllIds(client, service) {
+    var  promise = new ActionPromise();
+    promise._run = function () {
+        client.smembers('rest:ids:'+service, function (err, replies) {
+            if (err) {
+                promise._onError(err, "failed to get list of all ids");
+                return;
+            }
+            promise._onList(replies);
+        });
+    };
+    return promise;
+}
+
+// ## Exists
 
 function queryServiceExists(client, service) {
     var promise = new ActionPromise();
@@ -44,12 +63,32 @@ function queryServiceExists(client, service) {
     return promise;
 }
 
+function queryIdExists(client, service, id) {
+    var promise = new ActionPromise();
+    promise._run = function () {
+        client.sismember('rest:ids:'+service, id, function (err, reply) {
+            if (err) {
+                promise._onError(err, "failed to query if id exists");
+                return;
+            }
+            if (reply) {
+                promise._onYes(promise._then);
+            } else {
+                promise._onNo(promise._then);
+            }
+        });
+    };
+    return promise;
+}
+
+// ## Get
+
 function getServiceData(client, service) {
     var promise = new ActionPromise();
     promise._run = function () {
         client.get('rest:dservice:'+service, function (err, reply) {
             if (err) {
-                promise._onError(err, "failed to query if service exists");
+                promise._onError(err, "failed to get service data");
                 return;
             }
             try {
@@ -62,6 +101,27 @@ function getServiceData(client, service) {
     };
     return promise;
 }
+
+function getIdData(client, service, id) {
+    var promise = new ActionPromise();
+    promise._run = function () {
+        client.get('rest:did:'+service+":"+id, function (err, reply) {
+            if (err) {
+                promise._onError(err, "failed to get if id exists");
+                return;
+            }
+            try {
+                reply = JSON.parse(reply);
+            } catch (e) {
+
+            }
+            promise._onData(reply);
+        });
+    };
+    return promise;
+}
+
+// ## Create
 
 function createService(client, service) {
     var promise = new ActionPromise();
@@ -77,6 +137,22 @@ function createService(client, service) {
     return promise;
 }
 
+function createId(client, service, id) {
+    var promise = new ActionPromise();
+    promise._run = function () {
+        client.sadd('rest:ids:'+service, id, function (err) {
+            if (err) {
+                promise._onError(err, "failed to create id");
+                return;
+            }
+            promise._then();
+        });
+    };
+    return promise;
+}
+
+// ## Set
+
 function setServiceData(client, service, data) {
     var promise = new ActionPromise();
     promise._run = function () {
@@ -90,7 +166,7 @@ function setServiceData(client, service, data) {
         }
         client.set('rest:dservice:'+service, data, function (err) {
             if (err) {
-                promise._onError(err, "failed to set service data service");
+                promise._onError(err, "failed to set service data");
                 return;
             }
             promise._then();
@@ -98,6 +174,30 @@ function setServiceData(client, service, data) {
     };
     return promise;
 }
+
+function setIdData(client, service, id, data) {
+    var promise = new ActionPromise();
+    promise._run = function () {
+        if (typeof data === 'object') {
+            data = JSON.stringify(data);
+        } else if (typeof data === 'number') {
+            data = ""+data;
+        } else if (typeof data !== 'string') {
+            promise._onError(err, "data not provided as object, string or number");
+            return;
+        }
+        client.set('rest:dids:'+service+":"+id, data, function (err) {
+            if (err) {
+                promise._onError(err, "failed to set id data");
+                return;
+            }
+            promise._then();
+        });
+    };
+    return promise;
+}
+
+// ## Delete
 
 function deleteService(client, service) {
     var promise = new ActionPromise();
@@ -113,6 +213,22 @@ function deleteService(client, service) {
     };
     return promise;
 }
+
+function deleteId(client, service, id) {
+    var promise = new ActionPromise();
+    promise._run = function () {
+        console.log("@incomplete deleteId: needs to delete all services, keys, numbers");
+        client.del("rest:did:"+service+":"+id, function (err) {
+            if (err) { promise._onError(err, "failed to delete id on delete id data"); return; }
+            client.srem("rest:ids:"+service, service, function () {
+                if (err) { promise._onError(err, "failed to delete id on remove service from set "); return; }
+                promise._then();          
+            });
+        });
+    };
+    return promise;
+}
+
 
 // # Action Promise
 

@@ -81,7 +81,10 @@ function Restesque(options) {
             }, this)
             .to(function (params, data, res) {
                 if (data.actions.children) {
-                    res.ok('@stub: ":service" worked with children');
+                    action.listAllIds(self.client, params.service)
+                        .onError(function (err, desciption) { console.log(err, desciption); res.error(desciption); })
+                        .onList(function (replies) { res.ok(replies); })
+                        .run();
                     return;
                 } else {
                     action.queryServiceExists(self.client, params.service)
@@ -106,6 +109,7 @@ function Restesque(options) {
             }, this)
             .to(function (params, data, res) {
                 var didExist = true;
+
                 action.queryServiceExists(self.client, params.service)
                     .onError(function (err, desciption) { console.log(err, desciption); res.error(desciption); })
                     .onNo(function (then) { 
@@ -116,7 +120,11 @@ function Restesque(options) {
                             .run();
                     })
                     .then(function () {
-                        if (data.body) {
+                        if (data.body || !didExist) {
+                            if (!didExist && !data.body) {
+                                // it the data did not exit create it anyway
+                                data.body = "";
+                            }
                             action.setServiceData(self.client, params.service, data.body)
                                 .onError(function (err, desciption) { console.log(err, desciption); res.error(desciption); })
                                 .then(function () {
@@ -171,7 +179,7 @@ function Restesque(options) {
             }, this)
             .to(function (params, data, res) {
                 if (data.action.children) {
-                    return;
+                    
                 } 
             }, this)
 
