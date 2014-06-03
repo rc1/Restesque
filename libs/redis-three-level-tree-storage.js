@@ -11,7 +11,7 @@
 //      ]
 
 // #Modules
-var W = require( 'W-js' );
+var W = require( 'w-js' );
 
 function RedisThreeLevelTreeStorage( redisClient, rootKey ) {
     
