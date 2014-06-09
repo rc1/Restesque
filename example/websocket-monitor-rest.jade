@@ -41,10 +41,11 @@ html
                 var $newLog;
                 var now;
                 function removeOldestLogMessage() {
-                    logMessages[0].remove()
+                    logMessages[0].remove();
                     logMessages.splice(0, 1);
                 }
                 function addLogItem(content, type) {
+                    console.log( content );
                     if (logMessages.length >= maxLogMessage) { removeOldestLogMessage(); }
                     $newLog = $template.clone().removeClass('hidden');
                     $newLog.prependTo("ul");
@@ -73,9 +74,9 @@ html
                 function disconnectWebSocket(callback) {
                     // to do
                     if (webSocketIsOpen) {
-                        addLogItem("@todo: fix. WebSocket aleady connected. Refresh page first.","bad");
+                      addLogItem("@todo: fix. WebSocket aleady connected. Refresh page first.","bad");
                     } else {
-                        callback();
+                      callback();
                     }
                 }
                 function connectWebSocket(callback) {
@@ -98,7 +99,14 @@ html
                         setWebsocketIsClosed();
                     };
                     ws.onmessage = function (message) {
-                        addLogItem("Received: "+ message.data );
+                        try {
+                          console.log( 'recieved', message.data );
+                          var data = JSON.stringify( JSON.parse( message.data ), undefined, 2 );
+                        } catch (e) { 
+                            return addLogItem("Received: "+ message.data );
+                        }
+                        addLogItem("Received: "+ data );
+
                     };
                     ws.onerror = function () {
                         addLogItem("WebSocket error event","bad");
@@ -110,9 +118,9 @@ html
                     if (ws) {
                         disconnectWebSocket(connectWebSocket);
                     } else {
-                        connectWebSocket()
+                        connectWebSocket();
                     }
-                })
+                });
                 $(".send").on("click", function  (e) {
                     e.preventDefault();
                     var method = $(".rest-method").val();
@@ -121,17 +129,17 @@ html
                         token : $( '.rest-token' ).val(),
                         body : $( '.rest-body' ).val(),
                         method : ( method === 'none' ) ? '' : method
-                    }
+                    };
                     var json;
                     try {
                         json = JSON.stringify( packet );
                     } catch( err ) {
-                         addLogItem("Error stringifying json", "bad");
+                        addLogItem("Error stringifying json", "bad");
                         return;   
                     }
                     ws.send( json );
                     addLogItem("Sent: "+json, "neutral");
-                })
+                });
             });
     body 
         header 
@@ -160,4 +168,4 @@ html
                 li.hidden
                     span.timestamp 
                     span.spacer &mdash;
-                    span.content 
+                    pre.content 
