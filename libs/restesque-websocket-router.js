@@ -4,27 +4,23 @@ var util = require( 'util' );
 // ## Libs
 var Packet = require( './packet.js' );
 
-module.exports = function ( wss, db, urlRoot ) {
-
-    if ( typeof urlRoot === 'undefined' ) {
-        urlRoot = 'meta';
-    }
+module.exports = function ( wss, db ) {
 
     // # Router
     var router = new W.Router();
 
     // ## Map
     router
-        .map( '/'+urlRoot+'/', [ 'GET', 'SUBSCRIBE', 'UNSUBSCRIBE' ] )
+        .map( '/:service/', [ 'GET', 'SUBSCRIBE', 'UNSUBSCRIBE' ] )
             .to( checkAuthenticated )
             .toWhenMethod( 'GET', get )
-        .map( '/'+urlRoot+'/:id/', [ 'DELETE', 'GET', 'SUBSCRIBE', 'UNSUBSCRIBE' ] )
+        .map( '/:service/:id/', [ 'DELETE', 'GET', 'SUBSCRIBE', 'UNSUBSCRIBE' ] )
             .to( checkAuthenticated )
             .toWhenMethod( 'GET', get )
             .toWhenMethod( 'DELETE', del )
             .toWhenMethod( 'SUBSCRIBE', subscribe )
             //.toWhenMethod( 'DELETE', idPubSub )
-        .map( '/'+urlRoot+'/:id/:key/', [ 'DELETE', 'POST', 'GET', 'SUBSCRIBE', 'UNSUBSCRIBE' ] )
+        .map( '/:service/:id/:key/', [ 'DELETE', 'POST', 'GET', 'SUBSCRIBE', 'UNSUBSCRIBE' ] )
             .to( checkAuthenticated )
             // .to( function ( route, req, client, next ) { console.log( '-----' ); next(); } )
             .toWhenMethod( 'GET', get )
@@ -42,7 +38,7 @@ module.exports = function ( wss, db, urlRoot ) {
     }
 
     function get ( route, req, client, next  ) {
-        db.get( route.params.id, route.params.key ).done( function ( err, data ) {
+        db.get( route.params.service, route.params.id, route.params.key ).done( function ( err, data ) {
             if ( err ) {
                 return console.error( 'error', err );
             }
@@ -74,7 +70,7 @@ module.exports = function ( wss, db, urlRoot ) {
                 return console.error( 'failed to parse req.body on post' );
             }
         }
-        db.post( route.params.id, route.params.key, dataToStore ).done( function ( err, data ) {
+        db.post( route.params.service, route.params.id, route.params.key, dataToStore ).done( function ( err, data ) {
             if ( err ) {
                 return console.error( 'failed to post json', err );
             }
@@ -99,7 +95,7 @@ module.exports = function ( wss, db, urlRoot ) {
         if ( W.isNotOk( route.params.id ) ) {
             return console.error( 'attempt to delete with id' );
         }
-        db.del( route.params.id, route.params.key ).done( function ( err, data ) {
+        db.del( route.params.service, route.params.id, route.params.key ).done( function ( err, data ) {
             if ( err ) {
                 return console.error( 'error on del', err );
             }
@@ -182,7 +178,7 @@ module.exports = function ( wss, db, urlRoot ) {
         }
         if ( foundMatch ) {
             // - Get that subscription url from the db
-            db.get( route.params.id ).done( function ( err, data ) {
+            db.get( route.params.service, route.params.id ).done( function ( err, data ) {
                 if ( err ) {
                     console.error( 'error `getting` data from db for triggerId');
                 } else {

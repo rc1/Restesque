@@ -1,12 +1,12 @@
-// A redis meta storage system
+// A redis three level tree storage system
 //
 // __warining, prone to race conditions__ need to move transactions in Lua
 // 
-// #Data Model
+// #Data/Key Model
 //
-//     'meta'<set> [
-//        'meta':id<set>... [
-//            'meta':id:key<hash>... data
+//     'service'<set> [
+//        'service':id<set>... [
+//            'service':id:key<hash>... data
 //        ]
 //      ]
 
@@ -22,7 +22,7 @@ function RedisThreeLevelTreeStorage( redisClient, rootKey ) {
     if ( typeof rootKey !== 'undefined' ) {
         makeKey = W.partial( W.makeRedisKey, rootKey );
     } else {
-        makeKey = W.partial( W.makeRedisKey, 'meta' );
+        makeKey = W.partial( W.makeRedisKey, 'rtq' );
     }
 
     this.post = post;
@@ -30,18 +30,19 @@ function RedisThreeLevelTreeStorage( redisClient, rootKey ) {
     this.get = get;
 
     // ##Post
+    // * service <string>
     // * id <string>
     // * key <string>
     // * data <string>
-    function post ( id, key, data ) {
+    function post ( service, id, key, data ) {
         return W.Promise( function ( resolve, reject ) {
             // - add `meta:id` to the `meta` set
             // - add `meta:id:key` to the `meta:id` set
             // - set data `meta:id:key` to the hash set
             redisClient.multi()
-                .sadd( makeKey(), makeKey( id ) )
-                .sadd( makeKey( id ), makeKey( id, key ) )
-                .set( makeKey( id, key ), data )
+                .sadd( makeKey( service ), makeKey( service, id ) )
+                .sadd( makeKey( service, id ), makeKey( service, id, key ) )
+                .set( makeKey( service, id, key ), data )
                 .exec(function (err, replies) {
                     if ( err ) {
                         return reject( err );
@@ -52,9 +53,10 @@ function RedisThreeLevelTreeStorage( redisClient, rootKey ) {
     }
 
     // ##Del
+    // * service <string>
     // * id <string>
     // * key <string> optional
-    function del ( id, key ) {
+    function del ( service, id, key ) {
         return W.Promise( function ( resolve, reject ) {
 
             if ( typeof id === 'undefined' && typeof key === 'undefined' ) {
@@ -70,8 +72,8 @@ function RedisThreeLevelTreeStorage( redisClient, rootKey ) {
 
             if ( typeof key !== 'undefined' ) {
                 redisClient.multi()
-                    .del( makeKey( id, key ) )
-                    .srem( makeKey( id ), makeKey( id, key ) )
+                    .del( makeKey( service, id, key ) )
+                    .srem( makeKey( service, id ), makeKey( service, id, key ) )
                     .exec( function ( err, replies ) {
                             if ( err ) {
                                 return reject( err );
@@ -80,7 +82,7 @@ function RedisThreeLevelTreeStorage( redisClient, rootKey ) {
                         });
             } else if ( typeof id !== 'undefined' ) {
                 redisClient
-                    .smembers( makeKey( id ), function ( err, savedKeys ) {
+                    .smembers( makeKey( service, id ), function ( err, savedKeys ) {
                         if ( err ) {
                             return reject( err );
                         }
@@ -88,8 +90,8 @@ function RedisThreeLevelTreeStorage( redisClient, rootKey ) {
                         savedKeys.forEach( function ( savedKey ) {
                             multi.del( savedKey );
                         });
-                        multi.del( makeKey( id ) );
-                        multi.srem( makeKey(), makeKey( id ) );
+                        multi.del( makeKey( service, id ) );
+                        multi.srem( makeKey( service ), makeKey( service, id ) );
                         multi.exec( function ( err, replies ) {
                             if ( err ) {
                                 return reject( err );
@@ -104,9 +106,10 @@ function RedisThreeLevelTreeStorage( redisClient, rootKey ) {
     }
 
     // ##Get
+    // * service <string>
     // * id <string> optional
     // * key <string> optional
-    function get ( id, key ) {
+    function get ( service, id, key ) {
         return W.Promise( function ( resolve, reject ) {
             // - if there is a key
             //   - return `meta:id:key`
@@ -116,7 +119,7 @@ function RedisThreeLevelTreeStorage( redisClient, rootKey ) {
             //   -return each value for key in set `meta:id` for each value for key in `meta` 
             if ( typeof key !== 'undefined' ) {
                 redisClient
-                    .get( makeKey( id, key ), function ( err, data ) {
+                    .get( makeKey( service, id, key ), function ( err, data ) {
                         if ( err ) {
                             return reject( err );
                         } 
@@ -124,7 +127,7 @@ function RedisThreeLevelTreeStorage( redisClient, rootKey ) {
                     });
             } else if ( typeof id !== 'undefined' ) {
                 redisClient
-                    .smembers( makeKey( id ), function ( err, savedKeys ) {
+                    .smembers( makeKey( service, id ), function ( err, savedKeys ) {
                         if ( err ) {
                             return reject( err );
                         }
@@ -149,7 +152,7 @@ function RedisThreeLevelTreeStorage( redisClient, rootKey ) {
                 // This should be functional, grr
                 redisClient
                     // Get all the `id`s stored in meta
-                    .smembers( makeKey(), function ( err, savedIds ) {
+                    .smembers( makeKey( service ), function ( err, savedIds ) {
                         if ( err ) {
                             return reject( err );
                         }
