@@ -128,9 +128,18 @@ module.exports = function ( wss, db ) {
 
     function tokenForSubscription ( ws, uri ) {
         if ( typeof ws.routeTokenMap === 'undefined' ) {
-    	return false;
+    	   return null;
         }
-        return ws.routeTokenMap[ uri ];
+        var mappedToken = ws.routeTokenMap[ uri ];
+        if ( typeof mappedToken === 'undefined' ) {
+            return null;
+        } else if ( mappedToken === false ) {
+            return null;
+        } else if ( mappedToken === '' ) {
+            return null;
+        } else {
+            return  mappedToken;
+        }
     }
 
     function addTokenForSubscription ( ws, uri, token ) {
@@ -205,10 +214,9 @@ module.exports = function ( wss, db ) {
         for( var i in wss.clients ) {
             var c = wss.clients[ i ];
             var token = tokenForSubscription( c, req.uri );
-            if ( token !== false ) {
+            if ( token !== null ) {
                 // Get the packet which should have been
                 // set by post or get handlers
-                console.log( 'trigger posting info' );
                 send( c, req.subscriptionBroadcastPacket.token( token ) );
             }
         }
