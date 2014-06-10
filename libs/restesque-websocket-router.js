@@ -111,18 +111,6 @@ module.exports = function ( wss, db ) {
         });
     }
 
-    function metaPubSub ( route, req, client, next ) {
-        next();
-    }
-
-    function idPubSub ( route, req, client, next ) {
-        next();
-    }
-
-    function keyPubSub ( route, req, client, next ) {
-        next();
-    }
-
     // # Websocket Sending
 
     function send( client, packet ) {
@@ -163,50 +151,50 @@ module.exports = function ( wss, db ) {
 
     // ## PubSub Handlers
 
-    // ### TriggerId
-    // Used by `/meta/:id/:key/ to trigger client`
-    function triggerId ( route, req, client, next ) {
-        // - Make the `/meta/:id/` subcription url
-        var idSubscribeUrl = '/meta/' + route.params.id + '/';
-        // - Find if someone if subscribed to that url, or quit
-        var foundMatch = false;
-        for ( var i in wss.clients ) {
-            if ( typeof tokenForSubscription( wss.clients[ i ], idSubscribeUrl ) !== 'undefined' ) {
-                foundMatch = true;
-                break; 
-            }
-        }
-        if ( foundMatch ) {
-            // - Get that subscription url from the db
-            db.get( route.params.service, route.params.id ).done( function ( err, data ) {
-                if ( err ) {
-                    console.error( 'error `getting` data from db for triggerId');
-                } else {
-                    // - Call all the subsciber of that URL
-                    // Make the packet
-                    var packet = Packet.make()
-                        .status( 200 )
-                        .body( data )
-                        .method( req.subscriptionBroadcastPacket.method )
-                        .uri( req.subscriptionBroadcastPacket.uri );
-                    // Send the packet out to everyont
-                    for ( var i in wss.clients ) {
-                        var c = wss.clients[ i ];
-                        var token = tokenForSubscription( c, idSubscribeUrl );
-                        if ( token !== false ) {
-                            // Get the packet which should have been
-                            // set by post or get handlers
-                            send( c, packet.token( token ) );
-                        }
-                    }
-                }
-                next();
-            });
-        } else {
-            console.log( 'no match found' );
-            next();
-        }
-    }
+    // // ### TriggerId
+    // // Used by `/:service/:id/:key/ to trigger client`
+    // function triggerId ( route, req, client, next ) {
+    //     // - Make the `/:service/:id/` subcription url
+    //     var idSubscribeUrl = '/' + route.params.service + '/' + route.params.id + '/';
+    //     // - Find if someone if subscribed to that url, or quit
+    //     var foundMatch = false;
+    //     for ( var i in wss.clients ) {
+    //         if ( typeof tokenForSubscription( wss.clients[ i ], idSubscribeUrl ) !== 'undefined' ) {
+    //             foundMatch = true;
+    //             break; 
+    //         }
+    //     }
+    //     if ( foundMatch ) {
+    //         // - Get that subscription url from the db
+    //         db.get( route.params.service, route.params.id ).done( function ( err, data ) {
+    //             if ( err ) {
+    //                 console.error( 'error `getting` data from db for triggerId');
+    //             } else {
+    //                 // - Call all the subsciber of that URL
+    //                 // Make the packet
+    //                 var packet = Packet.make()
+    //                     .status( 200 )
+    //                     .body( data )
+    //                     .method( req.subscriptionBroadcastPacket.method )
+    //                     .uri( req.subscriptionBroadcastPacket.uri );
+    //                 // Send the packet out to everyont
+    //                 for ( var i in wss.clients ) {
+    //                     var c = wss.clients[ i ];
+    //                     var token = tokenForSubscription( c, idSubscribeUrl );
+    //                     if ( token !== false ) {
+    //                         // Get the packet which should have been
+    //                         // set by post or get handlers
+    //                         send( c, packet.token( token ) );
+    //                     }
+    //                 }
+    //             }
+    //             next();
+    //         });
+    //     } else {
+    //         console.log( 'no match found' );
+    //         next();
+    //     }
+    // }
 
     // ### Trigger 
     function trigger ( route, req, client, next ) {
