@@ -121,7 +121,7 @@ if ( typeof module !== 'undefined' && typeof module.exports !== 'undefined' ) {
 
 var Restesque = ( function () {
 
-    var RESTESQUE_TIMEOUT_AFTER = 1000;
+    var RESTESQUE_TIMEOUT_AFTER = 60000;
 
     // # Sending
 
