@@ -69,7 +69,7 @@ function RedisThreeLevelTreeStorage( redisClient, rootKey ) {
             //   - delete every key in `meta:id:key` set
             //   - delete `meta:id:key` set
             //   - delete `meta:id` in `meta`
-
+            
             if ( typeof key !== 'undefined' ) {
                 redisClient.multi()
                     .del( makeKey( service, id, key ) )

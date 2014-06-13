@@ -19,9 +19,10 @@ var RestesqueWebsocketRouter = require( '../libs/restesque-websocket-router.js' 
 var redisClient = redis.createClient();
 // Select the correct db
 redisClient.select( process.env.REDIS_DB || 3 );
-redisClient.on( 'error', function ( err ) {
-    console.error( 'Redis error', err );
-});
+// redisClient.on( 'error', function ( err ) {
+//      console.error( 'Redis client error', err );
+// });
+
 var db = new DB( redisClient );
 
 // # Express WebSocket Connection

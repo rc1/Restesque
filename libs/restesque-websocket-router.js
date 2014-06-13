@@ -138,7 +138,7 @@ module.exports = function ( wss, db ) {
         } else if ( mappedToken === '' ) {
             return null;
         } else {
-            return  mappedToken;
+            return mappedToken;
         }
     }
 
@@ -155,71 +155,44 @@ module.exports = function ( wss, db ) {
         }
     }
 
-    // // Mixin subscribable to the WS
-    // console.log( util.inherits( Subscribable, WS ) );
+    function triggerSubscribers( packet, service, id, key ) {
+        // Create the url
+        var uri = "/" + Array.prototype.slice.call( arguments, 1 ).join( '/' ) + "/";
+        
+        for( var i in wss.clients ) {
+            var c = wss.clients[ i ];
+            var token = tokenForSubscription( c, uri );
+            if ( token !== null ) {
+                // Get the packet which should have been
+                // set by post or get handlers
+                send( c, packet.token( token ) );
+            }
+        }
+    }
 
     // ## PubSub Handlers
-
-    // // ### TriggerId
-    // // Used by `/:service/:id/:key/ to trigger client`
-    // function triggerId ( route, req, client, next ) {
-    //     // - Make the `/:service/:id/` subcription url
-    //     var idSubscribeUrl = '/' + route.params.service + '/' + route.params.id + '/';
-    //     // - Find if someone if subscribed to that url, or quit
-    //     var foundMatch = false;
-    //     for ( var i in wss.clients ) {
-    //         if ( typeof tokenForSubscription( wss.clients[ i ], idSubscribeUrl ) !== 'undefined' ) {
-    //             foundMatch = true;
-    //             break; 
-    //         }
-    //     }
-    //     if ( foundMatch ) {
-    //         // - Get that subscription url from the db
-    //         db.get( route.params.service, route.params.id ).done( function ( err, data ) {
-    //             if ( err ) {
-    //                 console.error( 'error `getting` data from db for triggerId');
-    //             } else {
-    //                 // - Call all the subsciber of that URL
-    //                 // Make the packet
-    //                 var packet = Packet.make()
-    //                     .status( 200 )
-    //                     .body( data )
-    //                     .method( req.subscriptionBroadcastPacket.method )
-    //                     .uri( req.subscriptionBroadcastPacket.uri );
-    //                 // Send the packet out to everyont
-    //                 for ( var i in wss.clients ) {
-    //                     var c = wss.clients[ i ];
-    //                     var token = tokenForSubscription( c, idSubscribeUrl );
-    //                     if ( token !== false ) {
-    //                         // Get the packet which should have been
-    //                         // set by post or get handlers
-    //                         send( c, packet.token( token ) );
-    //                     }
-    //                 }
-    //             }
-    //             next();
-    //         });
-    //     } else {
-    //         console.log( 'no match found' );
-    //         next();
-    //     }
-    // }
 
     // ### Trigger 
     function trigger ( route, req, client, next ) {
         if ( W.isNotOk( req.uri ) ) {
             return console.error( 'no uri provided for trigger' );
         }
+        // Trigger subscribers using the packet we already have
+        triggerSubscribers( req.subscriptionBroadcastPacket, route.params.service, route.params.id, route.params.key );
 
-        for( var i in wss.clients ) {
-            var c = wss.clients[ i ];
-            var token = tokenForSubscription( c, req.uri );
-            if ( token !== null ) {
-                // Get the packet which should have been
-                // set by post or get handlers
-                send( c, req.subscriptionBroadcastPacket.token( token ) );
-            }
+        // If there is a :key we also need to let :service:data subscribes know there new data
+        if ( W.isOk( route.params.key ) ) {
+            // Get the data for the others
+            db.get( route.params.service, route.params.id )
+                .success( function ( data ) {
+                    req.subscriptionBroadcastPacket.body( data );
+                    triggerSubscribers( req.subscriptionBroadcastPacket, route.params.service, route.params.id );
+                })
+                .error( function ( err ) {
+                    console.error( 'Failed to get data for subscribers', err );
+                });
         }
+        
         next();
     }
 
@@ -275,4 +248,5 @@ module.exports = function ( wss, db ) {
     }
 
 };
+
 
