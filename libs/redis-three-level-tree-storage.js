@@ -35,7 +35,7 @@ function RedisThreeLevelTreeStorage( redisClient, rootKey ) {
     // * key <string>
     // * data <string>
     function post ( service, id, key, data ) {
-        return W.Promise( function ( resolve, reject ) {
+        return W.promise( function ( resolve, reject ) {
             // - add `meta:id` to the `meta` set
             // - add `meta:id:key` to the `meta:id` set
             // - set data `meta:id:key` to the hash set
@@ -57,7 +57,7 @@ function RedisThreeLevelTreeStorage( redisClient, rootKey ) {
     // * id <string>
     // * key <string> optional
     function del ( service, id, key ) {
-        return W.Promise( function ( resolve, reject ) {
+        return W.promise( function ( resolve, reject ) {
 
             if ( typeof id === 'undefined' && typeof key === 'undefined' ) {
                 return reject( new Error('del passed no id or key') );
@@ -110,7 +110,7 @@ function RedisThreeLevelTreeStorage( redisClient, rootKey ) {
     // * id <string> optional
     // * key <string> optional
     function get ( service, id, key ) {
-        return W.Promise( function ( resolve, reject ) {
+        return W.promise( function ( resolve, reject ) {
             // - if there is a key
             //   - return `meta:id:key`
             // - if there is an id only

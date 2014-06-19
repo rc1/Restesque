@@ -15,7 +15,7 @@ var Restesque = ( function () {
 
         var listener;
         // The promise which sends the request
-        return W.Promise( function ( resolve, reject ) {
+        return W.promise( function ( resolve, reject ) {
             // Make sure there is a packet
             if ( !packet.hasToken() ) {
                 packet.token( Packet.makeToken() );
@@ -57,7 +57,7 @@ var Restesque = ( function () {
 
     // Almost same as send execpt success is returned with a subscribed subscription object
     function makeSubscriptionAsync( ws, packet ) {
-        return W.Promise( function ( resolve, reject ) {
+        return W.promise( function ( resolve, reject ) {
             // Make sure there is a packet
             if ( !packet.hasToken() ) {
                 packet.token( 'sub-' + Packet.makeToken() );
@@ -99,7 +99,7 @@ var Restesque = ( function () {
     // the server request fails. Therefore if the subscription
     // fails it should be requested.
     Subscription.prototype.unsubscribe = function () {
-        return W.Promise( function ( resolve, reject ) {
+        return W.promise( function ( resolve, reject ) {
             // Send requested
             var packet = W.clone( this.packet );
             packet.method( 'UNSUBSCRIBE' );
