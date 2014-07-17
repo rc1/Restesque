@@ -115,9 +115,17 @@ module.exports = function ( wss, db ) {
 
     function send( client, packet ) {
         if ( typeof packet === 'string' ) {
-            client.send( packet );
+            client.send( packet, function ( err ) {
+                if ( err ) {
+                    console.error( 'Write failed. Should we remove the client?' );
+                }
+            });
         } else if ( packet instanceof Packet ) {
-            client.send( packet.getAsJsonStr() );
+            client.send( packet.getAsJsonStr(), function ( err ) {
+                if ( err ) {
+                    console.error( 'Write failed. Should we remove the client?' );
+                }
+            });
         }
     }
 
