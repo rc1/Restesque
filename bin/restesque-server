@@ -40,6 +40,10 @@ var wss = new WS.Server( {
     server: server 
 });
 
+wss.on( 'error', function ( err ) {
+	console.log( 'WSS Error:', err );
+});
+
 // # Bind the route
 
 RestesqueWebsocketRouter( wss, db, process.env.RESTESQUE_ROOT_KET || 'meta' );
