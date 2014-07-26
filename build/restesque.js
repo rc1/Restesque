@@ -117,7 +117,6 @@ if ( typeof module !== 'undefined' && typeof module.exports !== 'undefined' ) {
 
 // # CommonJS: Import
 if ( typeof module !== 'undefined' && typeof module.exports !== 'undefined' ) {
-    module.exports = Restesque;
     var Packet = require( './packet.js' );
     var W = require( 'w-js' );
 }
