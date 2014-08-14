@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 // Runs a restesque websocket instance
 // Enviroment Options:
 // * RESTESQUE_ROOT_KET <string> - _default_ meta

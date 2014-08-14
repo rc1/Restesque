@@ -1,1 +1,1 @@
-web: bin/restesque-server
+web: node bin/restesque-server
