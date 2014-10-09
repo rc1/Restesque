@@ -20,13 +20,14 @@ module.exports = function ( wss, db ) {
             .toWhenMethod( 'DELETE', del )
             .toWhenMethod( 'SUBSCRIBE', subscribe )
             //.toWhenMethod( 'DELETE', idPubSub )
-        .map( '/:service/:id/:key/', [ 'DELETE', 'POST', 'GET', 'SUBSCRIBE', 'UNSUBSCRIBE' ] )
+        .map( '/:service/:id/:key/', [ 'DELETE', 'POST', 'GET', 'SUBSCRIBE', 'UNSUBSCRIBE', 'NOW' ] )
             .to( checkAuthenticated )
             // .to( function ( route, req, client, next ) { console.log( '-----' ); next(); } )
             .toWhenMethod( 'GET', get )
             .toWhenMethod( 'DELETE', del )
+            .toWhenMethod( 'NOW', W.partialRight( post, Date.now ) )
             .toWhenMethod( 'POST', post )
-            .toWhenMethod( [ 'DELETE', 'POST' ], trigger )
+            .toWhenMethod( [ 'DELETE', 'POST', 'NOW' ], trigger )
             //.toWhenMethod( [ 'DELETE', 'POST' ], triggerId )
             .toWhenMethod( 'SUBSCRIBE', subscribe )
             .toWhenMethod( 'UNSUBSCRIBE', unsubscribe );
@@ -54,15 +55,29 @@ module.exports = function ( wss, db ) {
         next();
     }
 
-    function post ( route, req, client, next  ) {
+    // Value is optional
+    function post ( route, req, client, next, value ) {
         if ( W.isNotOk( route.params.id ) || W.isNotOk( route.params.key ) ) {
             return console.error( 'attempt to post without id and key' );
         }
-        var typeOfBody = typeof req.body;
-        if ( typeOfBody === 'undefined' || typeOfBody === 'function' ) {
-            return console.error( 'body is of wrong type' );
+
+        var dataToStore;
+
+        if ( typeof value === 'function' ) {
+            dataToStore = value();
+        } else {
+            dataToStore = value;
         }
-        var dataToStore = req.body;
+
+        // If not value, take if from the body
+        if ( typeof dataToStore === 'undefined' ) {
+            var typeOfBody = typeof req.body;
+            if ( typeOfBody === 'undefined' || typeOfBody === 'function' ) {
+                return console.error( 'body is of wrong type' );
+            }
+            dataToStore = req.body;
+        }
+
         if ( typeof dataToStore === 'object' ) {
             try {
                 dataToStore = JSON.stringify( dataToStore );
@@ -70,6 +85,7 @@ module.exports = function ( wss, db ) {
                 return console.error( 'failed to parse req.body on post' );
             }
         }
+
         db.post( route.params.service, route.params.id, route.params.key, dataToStore ).done( function ( err, data ) {
             if ( err ) {
                 return console.error( 'failed to post json', err );
@@ -79,7 +95,7 @@ module.exports = function ( wss, db ) {
                             .uri( req.uri )
                             .status( Packet.OK )
                             .token( req.token )
-                            .body( req.body );
+                            .body( dataToStore );
 
             // Pass the packet for trigger middleware
             req.subscriptionBroadcastPacket = packet;
