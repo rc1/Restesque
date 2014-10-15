@@ -35,6 +35,11 @@ function RedisThreeLevelTreeStorage( redisClient, rootKey ) {
     // * key <string>
     // * data <string>
     function post ( service, id, key, data ) {
+        // Strip colons
+        service = stripColons( service );
+        id = stripColons( id );
+        key = stripColons( key );
+
         return W.promise( function ( resolve, reject ) {
             // - add `meta:id` to the `meta` set
             // - add `meta:id:key` to the `meta:id` set
@@ -57,6 +62,11 @@ function RedisThreeLevelTreeStorage( redisClient, rootKey ) {
     // * id <string>
     // * key <string> optional
     function del ( service, id, key ) {
+        // Strip colons
+        service = stripColons( service );
+        id = stripColons( id );
+        key = stripColons( key );
+
         return W.promise( function ( resolve, reject ) {
 
             if ( typeof id === 'undefined' && typeof key === 'undefined' ) {
@@ -110,6 +120,11 @@ function RedisThreeLevelTreeStorage( redisClient, rootKey ) {
     // * id <string> optional
     // * key <string> optional
     function get ( service, id, key ) {
+        // Strip colons
+        service = stripColons( service );
+        id = stripColons( id );
+        key = stripColons( key );
+
         return W.promise( function ( resolve, reject ) {
             // - if there is a key
             //   - return `meta:id:key`
@@ -202,6 +217,10 @@ function RedisThreeLevelTreeStorage( redisClient, rootKey ) {
 function getLastComponent( str ) {
     var split = str.split(':');
     return split[split.length-1];
+}
+
+function stripColons ( str ) {
+    return typeof str === 'string' ? str.replace( ':', '' ) : str;
 }
 
 // #Exports

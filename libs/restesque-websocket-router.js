@@ -248,12 +248,18 @@ module.exports = function ( wss, db ) {
     }
 
     // # Bind to incomming connections and messages
-
     wss.on( 'connection', function ( conn ) {
-        console.log( 'new connection' );
+        var ip = conn._socket.remoteAddress;
+        
+        console.log( (new Date()).toLocaleString() , 'New connection:', ip, conn._socket.remotePort  );
+
         conn.on( 'message', W.bind( handleWsConnection, conn ));
-        // conn.on( 'error', function ( ) { });
-        // conn.on( 'close', function ( ) { });
+        conn.on( 'error', function ( ) { 
+            console.log( Date.now(), 'Connection error:', ip, conn._socket.remotePort  );
+        });
+        conn.on( 'close', function ( ) { 
+            console.log( Date.now(), 'Connection closed:', ip, conn._socket.remotePort  );
+        });
     });
 
     function handleWsConnection ( data ) {
@@ -262,7 +268,8 @@ module.exports = function ( wss, db ) {
         try {
             json = JSON.parse( data );
         } catch ( e ) {
-            return console.error( 'could not parse json from client connection', data );
+            return;
+            // return console.error( 'could not parse json from client connection', data );
         }
         if ( W.isOk( json.uri ) && W.isOk( json.method ) ) {
             router.trigger( json.uri, json, this ).withMethod( json.method );
