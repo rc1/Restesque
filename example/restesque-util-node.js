@@ -1,8 +1,6 @@
-var Restesque = require( './restesque' );
-var Packet = require( './packet' );
+var Restesque = require( './../libs/restesque' );
+var Packet = require( './../libs/packet' );
 var W = require( 'w-js' );
-
-console.log( 'res is', Restesque );
 
 module.exports = (function () {
     
@@ -27,6 +25,15 @@ module.exports = (function () {
         return Restesque.send( connection, p );
     }
 
+    function now ( coonection, uri, body ) {
+        var p = Packet
+                .make()
+                .uri( uri )
+                .method( 'NOW' );
+
+        return Restesque.send( connection, p );
+    }
+
     function subscribe ( connection, uri, handler ) {
         var p = Packet
                 .make()
@@ -43,12 +50,12 @@ module.exports = (function () {
         });
     }
 
-    function subscribeWithInitialGet( util, uri, handler ) {
+    function subscribeWithInitialGet( connection, uri, handler ) {
         return W.promise( function ( resolve, reject ) {
-            get( util, uri )
+            get( connection, uri )
                 .success( function ( packet ) {
                     handler( packet );
-                    subscribe( util, uri, handler );
+                    subscribe( connection, uri, handler );
                     resolve();
                 })
                 .error( reject );
@@ -61,6 +68,7 @@ module.exports = (function () {
         // Messages
         get : get,
         post : post,
+        now : now,
         subscribe : subscribe,
         subscribeWithInitialGet : subscribeWithInitialGet
     };
