@@ -1,47 +1,38 @@
-var Restesque = require( './../libs/restesque' );
-var Packet = require( './../libs/packet' );
-var W = require( 'w-js' );
+var RestesqueUtil = (function () {  
 
-module.exports = (function () {
-    
-    // # Messsages 
-
-    function get ( connection, uri ) {
+    // Can take ws or a restesque.util as first arg
+    function get ( util, uri ) {
+        var ws = util.connection ? util.connection : util;
         var p = Packet
                 .make()
                 .uri( uri )
                 .method( 'GET' );
 
-        return Restesque.send( connection, p );
+        return Restesque.send( ws, p );
     }
 
-    function post ( connection, uri, body ) {
+    // Can take ws or a restesque.util as first arg
+    function post ( util, uri, body ) {
+        var ws = util.connection ? util.connection : util;
         var p = Packet
                 .make()
                 .uri( uri )
                 .method( 'POST' )
                 .body( body );
 
-        return Restesque.send( connection, p );
+        return Restesque.send( ws, p );
     }
 
-    function now ( connection, uri, body ) {
-        var p = Packet
-                .make()
-                .uri( uri )
-                .method( 'NOW' );
-
-        return Restesque.send( connection, p );
-    }
-
-    function subscribe ( connection, uri, handler ) {
+    // Can take ws or a restesque.util as first arg
+    function subscribe ( util, uri, handler ) {
+        var ws = util.connection ? util.connection : util;
         var p = Packet
                 .make()
                 .uri( uri )
                 .method( 'SUBSCRIBE' );
 
         return W.promise( function ( resolve, reject ) {
-            Restesque.makeSubscriptionAsync( connection, p )
+            Restesque.makeSubscriptionAsync( ws, p )
                 .success( function ( subscribe ) {
                     subscribe.on( 'publish', handler );
                     resolve( subscribe );
@@ -50,25 +41,25 @@ module.exports = (function () {
         });
     }
 
-    function subscribeWithInitialGet( connection, uri, handler ) {
-        return W.promise( function ( resolve, reject ) {
-            get( connection, uri )
+    // Can take ws or a restesque.util as first arg
+    function subscribeWithInitialGet( util, uri, handler ) {
+        var ws = util.connection ? util.connection : util;
+         return W.promise( function ( resolve, reject ) {
+            get( ws, uri )
                 .success( function ( packet ) {
                     handler( packet );
-                    subscribe( connection, uri, handler );
+                    subscribe( ws, uri, handler );
                     resolve();
                 })
                 .error( reject );
-     	});	
+     });
     }
 
     // # Export
 
     return {
-        // Messages
         get : get,
         post : post,
-        now : now,
         subscribe : subscribe,
         subscribeWithInitialGet : subscribeWithInitialGet
     };
