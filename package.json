@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node libs/restesque-server.js",
     "example-node": "node example-node/client-example.js",
-    "example-browser": "cd example-browser; ./../node_modules/servant/bin/servant"
+    "example-browser": "cd example-browser; ./../node_modules/servant/bin/servant",
+    "example-ui-controller-after-dark": "cd example-ui-controller/after-dark; ./../../node_modules/servant/bin/servant",
+    "example-ui-controller-allude": "cd example-ui-controller/allude; ./../../node_modules/servant/bin/servant"
   },
   "engines": {
     "node": "0.10.26"
