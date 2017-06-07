@@ -169,6 +169,12 @@
       "from": "fs.realpath@>=1.0.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
     },
+    "gl-matrix": {
+      "version": "2.3.2",
+      "from": "gl-matrix@>=2.1.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/gl-matrix/-/gl-matrix-2.3.2.tgz",
+      "optional": true
+    },
     "glob": {
       "version": "7.1.1",
       "from": "glob@>=7.1.1 <8.0.0",
@@ -839,15 +845,9 @@
       "resolved": "https://registry.npmjs.org/vary/-/vary-1.1.0.tgz"
     },
     "w-js": {
-      "version": "4.35.2",
-      "from": "w-js@>=4.29.1 <5.0.0",
-      "dependencies": {
-        "gl-matrix": {
-          "version": "2.1.0",
-          "from": "gl-matrix@>=2.1.0 <3.0.0",
-          "optional": true
-        }
-      }
+      "version": "4.50.0",
+      "from": "w-js@4.50.0",
+      "resolved": "https://registry.npmjs.org/w-js/-/w-js-4.50.0.tgz"
     },
     "wrappy": {
       "version": "1.0.2",

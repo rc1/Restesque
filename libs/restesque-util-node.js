@@ -1,10 +1,10 @@
-var Restesque = require( './../libs/restesque' );
-var Packet = require( './../libs/packet' );
+var Restesque = require( './restesque' );
+var Packet = require( './packet' );
 var W = require( 'w-js' );
 
 module.exports = (function () {
-    
-    // # Messsages 
+
+    // # Messsages
 
     function get ( connection, uri ) {
         var p = Packet
@@ -59,7 +59,7 @@ module.exports = (function () {
                     resolve();
                 })
                 .error( reject );
-     	});	
+     	});
     }
 
     // # Export
@@ -72,5 +72,5 @@ module.exports = (function () {
         subscribe : subscribe,
         subscribeWithInitialGet : subscribeWithInitialGet
     };
-    
+
 }());
