@@ -4,7 +4,10 @@
   "description": "Realtime database and messaging system.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node libs/restesque-server.js",
+    "example-node": "node example-node/client-example.js",
+    "example-browser": "cd example-browser; ./../node_modules/servant/bin/servant"
   },
   "engines": {
     "node": "0.10.26"

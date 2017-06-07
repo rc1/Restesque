@@ -108,7 +108,7 @@
                       return addLogItem("Received: "+ message.data );
                   }
                   addLogItem("Received: "+ data );
-                  
+      
               };
               ws.onerror = function () {
                   addLogItem("WebSocket error event","bad");
@@ -145,8 +145,8 @@
       });
     </script>
   </head>
-  <body>
-    <header>
+  <body> 
+    <header> 
       <form>
         <input type="text" placeholder="url" class="url">
         <input type="submit" value="connect" class="connect">
@@ -172,8 +172,8 @@
     </div>
     <div id="console">
       <ul>               
-        <li class="hidden"><span class="timestamp"></span><span class="spacer">&mdash;</span>
-          <pre class="content"></pre>
+        <li class="hidden"><span class="timestamp"> </span><span class="spacer">&mdash;</span>
+          <pre class="content"> </pre>
         </li>
       </ul>
     </div>
