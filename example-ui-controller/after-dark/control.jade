@@ -1,0 +1,74 @@
+doctype html
+include layout
+html(lang="en")
+    head
+        title *Robot Control* - After Dark
+        link( rel='stylesheet', type='text/css', href='css/ui.css' )
+        script( src='/watch.js' )
+
+    body
+
+        // - utils
+        - function whenDefinedElse( value, alternative )  {
+        -   return ( typeof value !== 'undefined' ) ? value : alternative;
+        - }
+
+        #header
+            h1 After Dark 
+                span Robot Control
+
+            #state
+                .badge.connection.bad DISCONNECTED
+
+        #panels
+            mixin robot ( n )
+                - var width = 31;
+                - var root = '/robot-' + n;
+                .wrap
+                    h3 ROBOT #{n}
+                        .edit
+                    hr 
+                    .arrows
+                        .arrow-row
+                            .arrow-btn.up(    data-bind-click-now=root+'/movement-requested/backward/' )
+                        .arrow-row
+                            .arrow-btn.left(  data-bind-click-now=root+'/movement-requested/right/' )
+                            .arrow-btn.down(  data-bind-click-now=root+'/movement-requested/forward/' )
+                            .arrow-btn.right( data-bind-click-now=root+'/movement-requested/left/' )
+                    hr
+                    ul
+                        li 
+                            input( type='checkbox', data-bind-keyboard, data-robot-id=n )
+                            | Bind Keyboard
+                    h3 Distance
+                    ul
+                        +item( cols=width, uri=root+'/distance/0/', key='Sensor 0 Right Far', formatter='range', min=0, max=sensorRangeMax, step='1' )
+                        +item( cols=width, uri=root+'/distance/1/', key='Sensor 1 Right', formatter='range', min=0, max=sensorRangeMax, step='1' )
+                        +item( cols=width, uri=root+'/distance/2/', key='Sensor 2 Left', formatter='range', min=0, max=sensorRangeMax, step='1' )
+                        +item( cols=width, uri=root+'/distance/3/', key='Sensor 3 Left Far', formatter='range', min=0, max=sensorRangeMax, step='1' )
+                        +item( cols=width, uri=root+'/distance/4/', key='Sensor 4 Top Left', formatter='range', min=0, max=sensorRangeMax, step='1' )
+                        +item( cols=width, uri=root+'/distance/5/', key='Sensor 5 Top Middle', formatter='range', min=0, max=sensorRangeMax, step='1' )
+                        +item( cols=width, uri=root+'/distance/6/', key='Sensor 6 Top Right', formatter='range', min=0, max=sensorRangeMax, step='1' )
+
+        
+             .row
+                .panel
+                    .fringe: .expander -
+                    .content
+                        h2 ROBOT CONTROL
+                        +robot( 1 )
+                        +robot( 2 )
+                        +robot( 3 )
+                        +robot( 4 )
+                        +robot( 5 )
+                            
+
+        //- Libraries
+        script( src='js/libs/jquery-2.1.0.min.js' )
+        script( src='js/libs/W.min.js' )
+        script( src='js/libs/restesque.js' )
+        script( src='js/libs/lodash.min.js' )
+        script( src='js/connection-state.js' )
+
+        //- Main
+        script( src='js/main.ui.js' )

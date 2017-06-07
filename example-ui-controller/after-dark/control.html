@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<!-- - Config-->
+<!-- - UI Elements-->
+<html lang="en">
+  <head>
+    <title>*Robot Control* - After Dark</title>
+    <link rel="stylesheet" type="text/css" href="css/ui.css">
+    <script src="/watch.js"></script>
+  </head>
+  <body>
+    <!-- - utils-->
+    <div id="header">
+      <h1>After Dark <span>Robot Control</span></h1>
+      <div id="state">
+        <div class="badge connection bad">DISCONNECTED</div>
+      </div>
+    </div>
+    <div id="panels">
+      <div class="row">
+        <div class="panel">
+          <div class="fringe">
+            <div class="expander">-</div>
+          </div>
+          <div class="content">
+            <h2>ROBOT CONTROL</h2>
+                  <div class="wrap">
+                    <h3>ROBOT 1
+                      <div class="edit"></div>
+                    </h3>
+                    <hr>
+                    <div class="arrows">
+                      <div class="arrow-row">
+                        <div data-bind-click-now="/robot-1/movement-requested/backward/" class="arrow-btn up"></div>
+                      </div>
+                      <div class="arrow-row">
+                        <div data-bind-click-now="/robot-1/movement-requested/right/" class="arrow-btn left"></div>
+                        <div data-bind-click-now="/robot-1/movement-requested/forward/" class="arrow-btn down"></div>
+                        <div data-bind-click-now="/robot-1/movement-requested/left/" class="arrow-btn right"></div>
+                      </div>
+                    </div>
+                    <hr>
+                    <ul>
+                      <li>
+                        <input type="checkbox" data-bind-keyboard data-robot-id='1'>Bind Keyboard
+                      </li>
+                    </ul>
+                    <h3>Distance</h3>
+                    <ul>
+                      <li data-bind-key="Sensor 0 Right Far" data-bind-uri="/robot-1/distance/0/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 0 Right Far</span><span class="dots">.........</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 1 Right" data-bind-uri="/robot-1/distance/1/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 1 Right</span><span class="dots">.............</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 2 Left" data-bind-uri="/robot-1/distance/2/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 2 Left</span><span class="dots">..............</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 3 Left Far" data-bind-uri="/robot-1/distance/3/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 3 Left Far</span><span class="dots">..........</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 4 Top Left" data-bind-uri="/robot-1/distance/4/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 4 Top Left</span><span class="dots">..........</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 5 Top Middle" data-bind-uri="/robot-1/distance/5/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 5 Top Middle</span><span class="dots">........</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 6 Top Right" data-bind-uri="/robot-1/distance/6/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 6 Top Right</span><span class="dots">.........</span><span class="value">n/a</span></div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="wrap">
+                    <h3>ROBOT 2
+                      <div class="edit"></div>
+                    </h3>
+                    <hr>
+                    <div class="arrows">
+                      <div class="arrow-row">
+                        <div data-bind-click-now="/robot-2/movement-requested/backward/" class="arrow-btn up"></div>
+                      </div>
+                      <div class="arrow-row">
+                        <div data-bind-click-now="/robot-2/movement-requested/right/" class="arrow-btn left"></div>
+                        <div data-bind-click-now="/robot-2/movement-requested/forward/" class="arrow-btn down"></div>
+                        <div data-bind-click-now="/robot-2/movement-requested/left/" class="arrow-btn right"></div>
+                      </div>
+                    </div>
+                    <hr>
+                    <ul>
+                      <li>
+                        <input type="checkbox" data-bind-keyboard data-robot-id='2'>Bind Keyboard
+                      </li>
+                    </ul>
+                    <h3>Distance</h3>
+                    <ul>
+                      <li data-bind-key="Sensor 0 Right Far" data-bind-uri="/robot-2/distance/0/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 0 Right Far</span><span class="dots">.........</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 1 Right" data-bind-uri="/robot-2/distance/1/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 1 Right</span><span class="dots">.............</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 2 Left" data-bind-uri="/robot-2/distance/2/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 2 Left</span><span class="dots">..............</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 3 Left Far" data-bind-uri="/robot-2/distance/3/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 3 Left Far</span><span class="dots">..........</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 4 Top Left" data-bind-uri="/robot-2/distance/4/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 4 Top Left</span><span class="dots">..........</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 5 Top Middle" data-bind-uri="/robot-2/distance/5/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 5 Top Middle</span><span class="dots">........</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 6 Top Right" data-bind-uri="/robot-2/distance/6/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 6 Top Right</span><span class="dots">.........</span><span class="value">n/a</span></div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="wrap">
+                    <h3>ROBOT 3
+                      <div class="edit"></div>
+                    </h3>
+                    <hr>
+                    <div class="arrows">
+                      <div class="arrow-row">
+                        <div data-bind-click-now="/robot-3/movement-requested/backward/" class="arrow-btn up"></div>
+                      </div>
+                      <div class="arrow-row">
+                        <div data-bind-click-now="/robot-3/movement-requested/right/" class="arrow-btn left"></div>
+                        <div data-bind-click-now="/robot-3/movement-requested/forward/" class="arrow-btn down"></div>
+                        <div data-bind-click-now="/robot-3/movement-requested/left/" class="arrow-btn right"></div>
+                      </div>
+                    </div>
+                    <hr>
+                    <ul>
+                      <li>
+                        <input type="checkbox" data-bind-keyboard data-robot-id='3'>Bind Keyboard
+                      </li>
+                    </ul>
+                    <h3>Distance</h3>
+                    <ul>
+                      <li data-bind-key="Sensor 0 Right Far" data-bind-uri="/robot-3/distance/0/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 0 Right Far</span><span class="dots">.........</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 1 Right" data-bind-uri="/robot-3/distance/1/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 1 Right</span><span class="dots">.............</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 2 Left" data-bind-uri="/robot-3/distance/2/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 2 Left</span><span class="dots">..............</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 3 Left Far" data-bind-uri="/robot-3/distance/3/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 3 Left Far</span><span class="dots">..........</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 4 Top Left" data-bind-uri="/robot-3/distance/4/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 4 Top Left</span><span class="dots">..........</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 5 Top Middle" data-bind-uri="/robot-3/distance/5/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 5 Top Middle</span><span class="dots">........</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 6 Top Right" data-bind-uri="/robot-3/distance/6/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 6 Top Right</span><span class="dots">.........</span><span class="value">n/a</span></div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="wrap">
+                    <h3>ROBOT 4
+                      <div class="edit"></div>
+                    </h3>
+                    <hr>
+                    <div class="arrows">
+                      <div class="arrow-row">
+                        <div data-bind-click-now="/robot-4/movement-requested/backward/" class="arrow-btn up"></div>
+                      </div>
+                      <div class="arrow-row">
+                        <div data-bind-click-now="/robot-4/movement-requested/right/" class="arrow-btn left"></div>
+                        <div data-bind-click-now="/robot-4/movement-requested/forward/" class="arrow-btn down"></div>
+                        <div data-bind-click-now="/robot-4/movement-requested/left/" class="arrow-btn right"></div>
+                      </div>
+                    </div>
+                    <hr>
+                    <ul>
+                      <li>
+                        <input type="checkbox" data-bind-keyboard data-robot-id='4'>Bind Keyboard
+                      </li>
+                    </ul>
+                    <h3>Distance</h3>
+                    <ul>
+                      <li data-bind-key="Sensor 0 Right Far" data-bind-uri="/robot-4/distance/0/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 0 Right Far</span><span class="dots">.........</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 1 Right" data-bind-uri="/robot-4/distance/1/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 1 Right</span><span class="dots">.............</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 2 Left" data-bind-uri="/robot-4/distance/2/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 2 Left</span><span class="dots">..............</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 3 Left Far" data-bind-uri="/robot-4/distance/3/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 3 Left Far</span><span class="dots">..........</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 4 Top Left" data-bind-uri="/robot-4/distance/4/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 4 Top Left</span><span class="dots">..........</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 5 Top Middle" data-bind-uri="/robot-4/distance/5/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 5 Top Middle</span><span class="dots">........</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 6 Top Right" data-bind-uri="/robot-4/distance/6/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 6 Top Right</span><span class="dots">.........</span><span class="value">n/a</span></div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="wrap">
+                    <h3>ROBOT 5
+                      <div class="edit"></div>
+                    </h3>
+                    <hr>
+                    <div class="arrows">
+                      <div class="arrow-row">
+                        <div data-bind-click-now="/robot-5/movement-requested/backward/" class="arrow-btn up"></div>
+                      </div>
+                      <div class="arrow-row">
+                        <div data-bind-click-now="/robot-5/movement-requested/right/" class="arrow-btn left"></div>
+                        <div data-bind-click-now="/robot-5/movement-requested/forward/" class="arrow-btn down"></div>
+                        <div data-bind-click-now="/robot-5/movement-requested/left/" class="arrow-btn right"></div>
+                      </div>
+                    </div>
+                    <hr>
+                    <ul>
+                      <li>
+                        <input type="checkbox" data-bind-keyboard data-robot-id='5'>Bind Keyboard
+                      </li>
+                    </ul>
+                    <h3>Distance</h3>
+                    <ul>
+                      <li data-bind-key="Sensor 0 Right Far" data-bind-uri="/robot-5/distance/0/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 0 Right Far</span><span class="dots">.........</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 1 Right" data-bind-uri="/robot-5/distance/1/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 1 Right</span><span class="dots">.............</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 2 Left" data-bind-uri="/robot-5/distance/2/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 2 Left</span><span class="dots">..............</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 3 Left Far" data-bind-uri="/robot-5/distance/3/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 3 Left Far</span><span class="dots">..........</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 4 Top Left" data-bind-uri="/robot-5/distance/4/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 4 Top Left</span><span class="dots">..........</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 5 Top Middle" data-bind-uri="/robot-5/distance/5/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 5 Top Middle</span><span class="dots">........</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Sensor 6 Top Right" data-bind-uri="/robot-5/distance/6/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                        <div class="slider formatter">
+                          <div class="bar formatter"></div>
+                        </div>
+                        <div class="info"><span class="key">Sensor 6 Top Right</span><span class="dots">.........</span><span class="value">n/a</span></div>
+                      </li>
+                    </ul>
+                  </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/libs/jquery-2.1.0.min.js"></script>
+    <script src="js/libs/W.min.js"></script>
+    <script src="js/libs/restesque.js"></script>
+    <script src="js/libs/lodash.min.js"></script>
+    <script src="js/connection-state.js"></script>
+    <script src="js/main.ui.js"></script>
+  </body>
+</html>

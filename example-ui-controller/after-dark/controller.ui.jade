@@ -1,0 +1,212 @@
+doctype html
+include layout
+html(lang="en")
+    //- Includes
+    head
+        title *Controller* - After Dark
+        link( rel='stylesheet', type='text/css', href='css/ui.css' )
+        script( src='/watch.js' )
+
+    body
+
+        // - utils
+        - function whenDefinedElse( value, alternative )  {
+        -   return ( typeof value !== 'undefined' ) ? value : alternative;
+        - }
+
+        #header
+            h1 After Dark 
+                span Controller
+
+    
+
+            #state
+                .badge.connection.bad DISCONNECTED
+
+        #panels                              
+
+            //- Robot Configuration
+            .row
+                .panel
+                    .fringe: .expander -
+                    .content
+                        h2 ROBOT CONFIGURATION
+                        .wrap
+                            h3 Speed
+                                .edit
+                            ul
+                                - var width = 25;
+                                - var min = 0;
+                                - var max = 100;
+                                - var step = 1;
+                                +item( cols=width, uri='/robot-config/speed/forward/',      key='Forward', formatter='range', ui='slide', min=min, max=max, step=step )
+                                +item( cols=width, uri='/robot-config/speed/backward/',     key='Backward', formatter='range', ui='slide', min=min, max=max, step=step )
+                                +item( cols=width, uri='/robot-config/speed/turn/',         key='Turn', formatter='range', ui='slide', min=min, max=max, step=step )
+                        .wrap
+                            h3 Duration Miliseconds
+                                .edit
+                            ul
+                                - var width = 25;
+                                +item( cols=width, uri='/robot-config/duration/forward/',   key='Forward', formatter='range', ui='slide', min=0, max=5000, step='1' )
+                                +item( cols=width, uri='/robot-config/duration/backward/',  key='Backward', formatter='range', ui='slide', min=0, max=5000, step='1' )
+                                +item( cols=width, uri='/robot-config/duration/turn/',      key='Turn', formatter='range', ui='slide', min=0, max=5000, step='1' )
+                        .wrap
+                            h3 Kill At Distance
+                                .edit
+                            ul
+                                - var width = 45;
+                                - var max=200000
+                                +item( cols=width, uri='/robot-config/distance/0/', key='Sensor 0 Right Far', formatter='range', ui='slide', min=0, max=max, step='1' )
+                                +item( cols=width, uri='/robot-config/distance/1/', key='Sensor 1 Right', formatter='range', ui='slide', min=0, max=max, step='1' )
+                                +item( cols=width, uri='/robot-config/distance/2/', key='Sensor 2 Left', formatter='range', ui='slide', min=0, max=max, step='1' )
+                                +item( cols=width, uri='/robot-config/distance/3/', key='Sensor 3 Left Far', formatter='range', ui='slide', min=0, max=max, step='1' )
+                                +item( cols=width, uri='/robot-config/distance/4/', key='Sensor 4 Top Left', formatter='range', ui='slide', min=0, max=max, step='1' )
+                                +item( cols=width, uri='/robot-config/distance/5/', key='Sensor 5 Top Middle', formatter='range', ui='slide', min=0, max=max, step='1' )
+                                +item( cols=width, uri='/robot-config/distance/6/', key='Sensor 6 Top Right', formatter='range', ui='slide', min=0, max=max, step='1' )
+                        .wrap
+                            h3 MAC
+                                .edit
+                            ul
+                                - var width = 30;
+                                +item( cols=width, uri='/robot-config/mac/1/', key='1', ui='text-line' )
+                                +item( cols=width, uri='/robot-config/mac/2/', key='2', ui='text-line' )
+                                +item( cols=width, uri='/robot-config/mac/3/', key='3', ui='text-line' )
+                                +item( cols=width, uri='/robot-config/mac/4/', key='4', ui='text-line' )
+                                +item( cols=width, uri='/robot-config/mac/5/', key='5', ui='text-line' )
+                        .wrap
+                            h3 Hostname
+                                .edit
+                            ul
+                                - var width = 30;
+                                +item( cols=width, uri='/robot-config/hostname/1/', key='1', ui='text-line' )
+                                +item( cols=width, uri='/robot-config/hostname/2/', key='2', ui='text-line' )
+                                +item( cols=width, uri='/robot-config/hostname/3/', key='3', ui='text-line' )
+                                +item( cols=width, uri='/robot-config/hostname/4/', key='4', ui='text-line' )
+                                +item( cols=width, uri='/robot-config/hostname/5/', key='5', ui='text-line' )
+                        .wrap
+                            h3 Heartbeat Every MS
+                                .edit
+                            ul
+                                - var width = 25;
+                                +item( cols=width, uri='/robot-config/heartbeat-every-ms/pi/', key='Pi', formatter='range', ui='slide', min=100, max=20000, step='10' )
+                                +item( cols=width, uri='/robot-config/heartbeat-every-ms/operator/', key='Operator', formatter='range', ui='slide', min=100, max=20000, step='10' )
+
+            //- WebRTC
+            .row
+                .panel
+                    .fringe: .expander -
+                    .content
+                        h2 WEBRTC
+                        .wrap
+                            h3 Test Request
+                                .edit
+                            ul
+                                - width = 30;
+                                +item( cols=width, uri='/webrtc/test-request/next-cid/', key='Next CID', ui='text-line' )
+                                +item( cols=width, uri='/webrtc/test-request/call-id/', key='Call ID' )
+                            h3 Tester
+                            ul
+                                - width = 30;
+                                +item( cols=width, uri='/webrtc/tester/heartbeat/', key='Heartbeat', formatter='time-ago' )
+
+            mixin robot ( n )
+                    .panel
+                        .fringe: .expander -
+                        .content
+                            h2 ROBOT #{n}
+                            - var width = 31;
+                            - var root = '/robot-' + n;
+                            h3 Robot
+                            ul
+                                //- +item( cols=width, uri=root+'/robot/version/', key='Version' )
+                                +item( cols=width, uri=root+'/robot/ip/', key='IP' )
+                                +item( cols=width, uri=root+'/robot/heartbeat/', key='Heartbeat', formatter='time-ago' )
+                                +item( cols=width, uri=root+'/robot/status/', key='Status', ui='text-line', formatter='char-limit', char-limit='22' )
+                            h3 View
+                            ul
+                                +item( cols=width, uri=root+'/view/lut-enabled/', key='Lut Enabled', ui='toggle-yes-no' )
+                            h3 Operator
+                                .edit
+                            ul
+                                +item( cols=width, uri=root+'/operator/is-enabled/', key='Is Enabled', ui='toggle-yes-no' )
+                                +item( cols=width, uri=root+'/operator/accepted-control/', key='Accepted Control', formatter='time-ago' )
+                                +item( cols=width, uri=root+'/operator/reset-timer/', key='Reset Timer', formatter='time-ago', ui='now' )
+                                //- +item( cols=width, uri=root+'/operator/heartbeat/', key='Operator', formatter='time-ago' )
+                                //- +item( cols=width, uri=root+'/operator/help-requested/', key='Help Requested', formatter='time-ago' )
+                                +item( cols=width, uri=root+'/operator/name/', key='Name', ui='text-line', formatter='char-limit', char-limit='22' )
+                                +item( cols=width, uri=root+'/operator/location/', key='Location', ui='text-line', formatter='char-limit', char-limit='22')
+                                //- +item( cols=width, uri=root+'/operator/age/', key='Age', ui='text-line', formatter='char-limit', char-limit='22'  )
+                                +item( cols=width, uri=root+'/operator/key/', key='Key', ui='text-line', formatter='char-limit', char-limit='22' )
+                                +item( cols=width, uri=root+'/operator/elevate/', key='Elevate', ui='text-line', formatter='char-limit', char-limit='10')
+                            h3 Controller
+                            ul
+                                +item( cols=width, uri=root+'/controller/key/', key='Key' )
+                                +item( cols=width, uri=root+'/controller/display-offline/', key='Display Offline', ui='toggle-yes-no' )
+                                +item( cols=width, uri=root+'/controller/display-info/', key='Display Info', ui='toggle-yes-no' )
+                            h3 Distance
+                            ul
+                                +item( cols=width, uri=root+'/distance/0/', key='Sensor 0 Right Far', formatter='range', ui='slide', min=0, max=sensorRangeMax, step='1' )
+                                +item( cols=width, uri=root+'/distance/1/', key='Sensor 1 Right', formatter='range', ui='slide', min=0, max=sensorRangeMax, step='1' )
+                                +item( cols=width, uri=root+'/distance/2/', key='Sensor 2 Left', formatter='range', ui='slide', min=0, max=sensorRangeMax, step='1' )
+                                +item( cols=width, uri=root+'/distance/3/', key='Sensor 3 Left Far', formatter='range', ui='slide', min=0, max=sensorRangeMax, step='1' )
+                                +item( cols=width, uri=root+'/distance/4/', key='Sensor 4 Top Left', formatter='range', ui='slide', min=0, max=sensorRangeMax, step='1' )
+                                +item( cols=width, uri=root+'/distance/5/', key='Sensor 5 Top Middle', formatter='range', ui='slide', min=0, max=sensorRangeMax, step='1' )
+                                +item( cols=width, uri=root+'/distance/6/', key='Sensor 6 Top Right', formatter='range', ui='slide', min=0, max=sensorRangeMax, step='1' )
+                            h3 Movement Requested
+                                .edit
+                            .arrows
+                                .arrow-row
+                                    .arrow-btn.up(    data-bind-click-now=root+'/movement-requested/backward/' )
+                                .arrow-row
+                                    .arrow-btn.left(  data-bind-click-now=root+'/movement-requested/left/' )
+                                    .arrow-btn.down(  data-bind-click-now=root+'/movement-requested/forward/' )
+                                    .arrow-btn.right( data-bind-click-now=root+'/movement-requested/right/' )
+                            ul
+                                +item( cols=width, uri=root+'/movement-requested/forward/', key='Forward', formatter='time-ago', ui='now' )
+                                +item( cols=width, uri=root+'/movement-requested/backward/', key='Backward', formatter='time-ago', ui='now' )
+                                +item( cols=width, uri=root+'/movement-requested/left/', key='Left', formatter='time-ago', ui='now' )
+                                +item( cols=width, uri=root+'/movement-requested/right/', key='Right', formatter='time-ago', ui='now' )
+                                +item( cols=width, uri=root+'/movement-requested/tilt/', key='Tilt', formatter='range', ui='slide', min=0, max=254, step='1' )
+                            h3 Movement Actioned
+                            ul
+                                +item( cols=width, uri=root+'/movement-actioned/forward/', key='Forward', formatter='time-ago' )
+                                +item( cols=width, uri=root+'/movement-actioned/backward/', key='Backward', formatter='time-ago', , ui='now' )
+                                +item( cols=width, uri=root+'/movement-actioned/left/', key='Left', formatter='time-ago' )
+                                +item( cols=width, uri=root+'/movement-actioned/right/', key='Right', formatter='time-ago' )
+                                +item( cols=width, uri=root+'/movement-actioned/tilt/', key='Tilt', formatter='time-ago' )
+                            h3 Robot Video
+                                .edit
+                            ul
+                                +item( cols=width, uri=root+'/robot-video/host/', key='Host', ui='text-line' )
+                                +item( cols=width, uri=root+'/robot-video/port/', key='Port', ui='text-line' )
+                                +item( cols=width, uri=root+'/robot-video/launch/', key='Launch', formatter='time-ago', ui='now' )
+                                +item( cols=width, uri=root+'/robot-video/kill/', key='Kill', formatter='time-ago', ui='now' )
+                            h3 Fallback Video
+                                .edit
+                            ul
+                                +item( cols=width, uri=root+'/fallback-video/launch/', key='Launch', formatter='time-ago', ui='now' )
+                                +item( cols=width, uri=root+'/fallback-video/kill/', key='Kill', formatter='time-ago', ui='now' )
+                            h3 Controller Video
+                                .edit
+                            ul
+                                +item( cols=width, uri=root+'/controller-video/launch/', key='Launch', formatter='time-ago', ui='now' )
+                                +item( cols=width, uri=root+'/controller-video/kill/', key='Kill', formatter='time-ago', ui='now' )
+
+            //- Robots
+            .row
+                +robot( 1 )
+                +robot( 2 )
+                +robot( 3 )
+                +robot( 4 )
+
+
+            //- Libraries
+            script( src='js/libs/jquery-2.1.0.min.js' )
+            script( src='js/libs/W.min.js' )
+            script( src='js/libs/restesque.js' )
+            script( src='js/libs/lodash.min.js' )
+            script( src='js/connection-state.js' )
+
+            //- Main
+            script( src='js/main.ui.js' )
+ 

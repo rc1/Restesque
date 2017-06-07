@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<!-- - Config-->
+<!-- - UI Elements-->
+<html lang="en">
+  <head>
+    <title>*Controller* - After Dark</title>
+    <link rel="stylesheet" type="text/css" href="css/ui.css">
+    <script src="/watch.js"></script>
+  </head>
+  <body>
+    <!-- - utils-->
+    <div id="header">
+      <h1>After Dark <span>Controller</span></h1>
+      <div id="state">
+        <div class="badge connection bad">DISCONNECTED</div>
+      </div>
+    </div>
+    <div id="panels">                             
+      <div class="row">
+        <div class="panel">
+          <div class="fringe">
+            <div class="expander">-</div>
+          </div>
+          <div class="content">
+            <h2>ROBOT CONFIGURATION</h2>
+            <div class="wrap">
+              <h3>Speed
+                <div class="edit"></div>
+              </h3>
+              <ul>
+                <li data-bind-key="Forward" data-bind-uri="/robot-config/speed/forward/" data-bind-cols='25' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='100' data-bind-step='1'>
+                  <div class="slider formatter">
+                    <div class="bar formatter"></div>
+                  </div>
+                  <div class="info"><span class="key">Forward</span><span class="dots">..............</span><span class="value">n/a</span></div>
+                  <div class="slider ui">
+                    <div class="bar ui"></div>
+                  </div>
+                </li>
+                <li data-bind-key="Backward" data-bind-uri="/robot-config/speed/backward/" data-bind-cols='25' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='100' data-bind-step='1'>
+                  <div class="slider formatter">
+                    <div class="bar formatter"></div>
+                  </div>
+                  <div class="info"><span class="key">Backward</span><span class="dots">.............</span><span class="value">n/a</span></div>
+                  <div class="slider ui">
+                    <div class="bar ui"></div>
+                  </div>
+                </li>
+                <li data-bind-key="Turn" data-bind-uri="/robot-config/speed/turn/" data-bind-cols='25' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='100' data-bind-step='1'>
+                  <div class="slider formatter">
+                    <div class="bar formatter"></div>
+                  </div>
+                  <div class="info"><span class="key">Turn</span><span class="dots">.................</span><span class="value">n/a</span></div>
+                  <div class="slider ui">
+                    <div class="bar ui"></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="wrap">
+              <h3>Duration Miliseconds
+                <div class="edit"></div>
+              </h3>
+              <ul>
+                <li data-bind-key="Forward" data-bind-uri="/robot-config/duration/forward/" data-bind-cols='25' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='5000' data-bind-step="1">
+                  <div class="slider formatter">
+                    <div class="bar formatter"></div>
+                  </div>
+                  <div class="info"><span class="key">Forward</span><span class="dots">..............</span><span class="value">n/a</span></div>
+                  <div class="slider ui">
+                    <div class="bar ui"></div>
+                  </div>
+                </li>
+                <li data-bind-key="Backward" data-bind-uri="/robot-config/duration/backward/" data-bind-cols='25' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='5000' data-bind-step="1">
+                  <div class="slider formatter">
+                    <div class="bar formatter"></div>
+                  </div>
+                  <div class="info"><span class="key">Backward</span><span class="dots">.............</span><span class="value">n/a</span></div>
+                  <div class="slider ui">
+                    <div class="bar ui"></div>
+                  </div>
+                </li>
+                <li data-bind-key="Turn" data-bind-uri="/robot-config/duration/turn/" data-bind-cols='25' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='5000' data-bind-step="1">
+                  <div class="slider formatter">
+                    <div class="bar formatter"></div>
+                  </div>
+                  <div class="info"><span class="key">Turn</span><span class="dots">.................</span><span class="value">n/a</span></div>
+                  <div class="slider ui">
+                    <div class="bar ui"></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="wrap">
+              <h3>Kill At Distance
+                <div class="edit"></div>
+              </h3>
+              <ul>
+                <li data-bind-key="Sensor 0 Right Far" data-bind-uri="/robot-config/distance/0/" data-bind-cols='45' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='200000' data-bind-step="1">
+                  <div class="slider formatter">
+                    <div class="bar formatter"></div>
+                  </div>
+                  <div class="info"><span class="key">Sensor 0 Right Far</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                  <div class="slider ui">
+                    <div class="bar ui"></div>
+                  </div>
+                </li>
+                <li data-bind-key="Sensor 1 Right" data-bind-uri="/robot-config/distance/1/" data-bind-cols='45' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='200000' data-bind-step="1">
+                  <div class="slider formatter">
+                    <div class="bar formatter"></div>
+                  </div>
+                  <div class="info"><span class="key">Sensor 1 Right</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                  <div class="slider ui">
+                    <div class="bar ui"></div>
+                  </div>
+                </li>
+                <li data-bind-key="Sensor 2 Left" data-bind-uri="/robot-config/distance/2/" data-bind-cols='45' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='200000' data-bind-step="1">
+                  <div class="slider formatter">
+                    <div class="bar formatter"></div>
+                  </div>
+                  <div class="info"><span class="key">Sensor 2 Left</span><span class="dots">............................</span><span class="value">n/a</span></div>
+                  <div class="slider ui">
+                    <div class="bar ui"></div>
+                  </div>
+                </li>
+                <li data-bind-key="Sensor 3 Left Far" data-bind-uri="/robot-config/distance/3/" data-bind-cols='45' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='200000' data-bind-step="1">
+                  <div class="slider formatter">
+                    <div class="bar formatter"></div>
+                  </div>
+                  <div class="info"><span class="key">Sensor 3 Left Far</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                  <div class="slider ui">
+                    <div class="bar ui"></div>
+                  </div>
+                </li>
+                <li data-bind-key="Sensor 4 Top Left" data-bind-uri="/robot-config/distance/4/" data-bind-cols='45' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='200000' data-bind-step="1">
+                  <div class="slider formatter">
+                    <div class="bar formatter"></div>
+                  </div>
+                  <div class="info"><span class="key">Sensor 4 Top Left</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                  <div class="slider ui">
+                    <div class="bar ui"></div>
+                  </div>
+                </li>
+                <li data-bind-key="Sensor 5 Top Middle" data-bind-uri="/robot-config/distance/5/" data-bind-cols='45' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='200000' data-bind-step="1">
+                  <div class="slider formatter">
+                    <div class="bar formatter"></div>
+                  </div>
+                  <div class="info"><span class="key">Sensor 5 Top Middle</span><span class="dots">......................</span><span class="value">n/a</span></div>
+                  <div class="slider ui">
+                    <div class="bar ui"></div>
+                  </div>
+                </li>
+                <li data-bind-key="Sensor 6 Top Right" data-bind-uri="/robot-config/distance/6/" data-bind-cols='45' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='200000' data-bind-step="1">
+                  <div class="slider formatter">
+                    <div class="bar formatter"></div>
+                  </div>
+                  <div class="info"><span class="key">Sensor 6 Top Right</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                  <div class="slider ui">
+                    <div class="bar ui"></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="wrap">
+              <h3>MAC
+                <div class="edit"></div>
+              </h3>
+              <ul>
+                <li data-bind-key="1" data-bind-uri="/robot-config/mac/1/" data-bind-cols='30' data-bind-value="n/a" data-bind-ui="text-line">
+                  <div class="info"><span class="key">1</span><span class="dots">.........................</span><span class="value">n/a</span></div>
+                  <div class="text-line">
+                    <div class="enable">
+                      <div class="trigger ui now">
+                        <div class="box non-live">edit</div>
+                        <div class="box live">live edit</div>
+                      </div>
+                    </div>
+                    <div class="input">
+                      <input type="text">
+                      <div class="send box hand"> send</div>
+                      <div class="done box hand"> done</div>
+                    </div>
+                  </div>
+                </li>
+                <li data-bind-key="2" data-bind-uri="/robot-config/mac/2/" data-bind-cols='30' data-bind-value="n/a" data-bind-ui="text-line">
+                  <div class="info"><span class="key">2</span><span class="dots">.........................</span><span class="value">n/a</span></div>
+                  <div class="text-line">
+                    <div class="enable">
+                      <div class="trigger ui now">
+                        <div class="box non-live">edit</div>
+                        <div class="box live">live edit</div>
+                      </div>
+                    </div>
+                    <div class="input">
+                      <input type="text">
+                      <div class="send box hand"> send</div>
+                      <div class="done box hand"> done</div>
+                    </div>
+                  </div>
+                </li>
+                <li data-bind-key="3" data-bind-uri="/robot-config/mac/3/" data-bind-cols='30' data-bind-value="n/a" data-bind-ui="text-line">
+                  <div class="info"><span class="key">3</span><span class="dots">.........................</span><span class="value">n/a</span></div>
+                  <div class="text-line">
+                    <div class="enable">
+                      <div class="trigger ui now">
+                        <div class="box non-live">edit</div>
+                        <div class="box live">live edit</div>
+                      </div>
+                    </div>
+                    <div class="input">
+                      <input type="text">
+                      <div class="send box hand"> send</div>
+                      <div class="done box hand"> done</div>
+                    </div>
+                  </div>
+                </li>
+                <li data-bind-key="4" data-bind-uri="/robot-config/mac/4/" data-bind-cols='30' data-bind-value="n/a" data-bind-ui="text-line">
+                  <div class="info"><span class="key">4</span><span class="dots">.........................</span><span class="value">n/a</span></div>
+                  <div class="text-line">
+                    <div class="enable">
+                      <div class="trigger ui now">
+                        <div class="box non-live">edit</div>
+                        <div class="box live">live edit</div>
+                      </div>
+                    </div>
+                    <div class="input">
+                      <input type="text">
+                      <div class="send box hand"> send</div>
+                      <div class="done box hand"> done</div>
+                    </div>
+                  </div>
+                </li>
+                <li data-bind-key="5" data-bind-uri="/robot-config/mac/5/" data-bind-cols='30' data-bind-value="n/a" data-bind-ui="text-line">
+                  <div class="info"><span class="key">5</span><span class="dots">.........................</span><span class="value">n/a</span></div>
+                  <div class="text-line">
+                    <div class="enable">
+                      <div class="trigger ui now">
+                        <div class="box non-live">edit</div>
+                        <div class="box live">live edit</div>
+                      </div>
+                    </div>
+                    <div class="input">
+                      <input type="text">
+                      <div class="send box hand"> send</div>
+                      <div class="done box hand"> done</div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="wrap">
+              <h3>Hostname
+                <div class="edit"></div>
+              </h3>
+              <ul>
+                <li data-bind-key="1" data-bind-uri="/robot-config/hostname/1/" data-bind-cols='30' data-bind-value="n/a" data-bind-ui="text-line">
+                  <div class="info"><span class="key">1</span><span class="dots">.........................</span><span class="value">n/a</span></div>
+                  <div class="text-line">
+                    <div class="enable">
+                      <div class="trigger ui now">
+                        <div class="box non-live">edit</div>
+                        <div class="box live">live edit</div>
+                      </div>
+                    </div>
+                    <div class="input">
+                      <input type="text">
+                      <div class="send box hand"> send</div>
+                      <div class="done box hand"> done</div>
+                    </div>
+                  </div>
+                </li>
+                <li data-bind-key="2" data-bind-uri="/robot-config/hostname/2/" data-bind-cols='30' data-bind-value="n/a" data-bind-ui="text-line">
+                  <div class="info"><span class="key">2</span><span class="dots">.........................</span><span class="value">n/a</span></div>
+                  <div class="text-line">
+                    <div class="enable">
+                      <div class="trigger ui now">
+                        <div class="box non-live">edit</div>
+                        <div class="box live">live edit</div>
+                      </div>
+                    </div>
+                    <div class="input">
+                      <input type="text">
+                      <div class="send box hand"> send</div>
+                      <div class="done box hand"> done</div>
+                    </div>
+                  </div>
+                </li>
+                <li data-bind-key="3" data-bind-uri="/robot-config/hostname/3/" data-bind-cols='30' data-bind-value="n/a" data-bind-ui="text-line">
+                  <div class="info"><span class="key">3</span><span class="dots">.........................</span><span class="value">n/a</span></div>
+                  <div class="text-line">
+                    <div class="enable">
+                      <div class="trigger ui now">
+                        <div class="box non-live">edit</div>
+                        <div class="box live">live edit</div>
+                      </div>
+                    </div>
+                    <div class="input">
+                      <input type="text">
+                      <div class="send box hand"> send</div>
+                      <div class="done box hand"> done</div>
+                    </div>
+                  </div>
+                </li>
+                <li data-bind-key="4" data-bind-uri="/robot-config/hostname/4/" data-bind-cols='30' data-bind-value="n/a" data-bind-ui="text-line">
+                  <div class="info"><span class="key">4</span><span class="dots">.........................</span><span class="value">n/a</span></div>
+                  <div class="text-line">
+                    <div class="enable">
+                      <div class="trigger ui now">
+                        <div class="box non-live">edit</div>
+                        <div class="box live">live edit</div>
+                      </div>
+                    </div>
+                    <div class="input">
+                      <input type="text">
+                      <div class="send box hand"> send</div>
+                      <div class="done box hand"> done</div>
+                    </div>
+                  </div>
+                </li>
+                <li data-bind-key="5" data-bind-uri="/robot-config/hostname/5/" data-bind-cols='30' data-bind-value="n/a" data-bind-ui="text-line">
+                  <div class="info"><span class="key">5</span><span class="dots">.........................</span><span class="value">n/a</span></div>
+                  <div class="text-line">
+                    <div class="enable">
+                      <div class="trigger ui now">
+                        <div class="box non-live">edit</div>
+                        <div class="box live">live edit</div>
+                      </div>
+                    </div>
+                    <div class="input">
+                      <input type="text">
+                      <div class="send box hand"> send</div>
+                      <div class="done box hand"> done</div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="wrap">
+              <h3>Heartbeat Every MS
+                <div class="edit"></div>
+              </h3>
+              <ul>
+                <li data-bind-key="Pi" data-bind-uri="/robot-config/heartbeat-every-ms/pi/" data-bind-cols='25' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='100' data-bind-max='20000' data-bind-step="10">
+                  <div class="slider formatter">
+                    <div class="bar formatter"></div>
+                  </div>
+                  <div class="info"><span class="key">Pi</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                  <div class="slider ui">
+                    <div class="bar ui"></div>
+                  </div>
+                </li>
+                <li data-bind-key="Operator" data-bind-uri="/robot-config/heartbeat-every-ms/operator/" data-bind-cols='25' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='100' data-bind-max='20000' data-bind-step="10">
+                  <div class="slider formatter">
+                    <div class="bar formatter"></div>
+                  </div>
+                  <div class="info"><span class="key">Operator</span><span class="dots">.............</span><span class="value">n/a</span></div>
+                  <div class="slider ui">
+                    <div class="bar ui"></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="panel">
+          <div class="fringe">
+            <div class="expander">-</div>
+          </div>
+          <div class="content">
+            <h2>WEBRTC</h2>
+            <div class="wrap">
+              <h3>Test Request
+                <div class="edit"></div>
+              </h3>
+              <ul>
+                <li data-bind-key="Next CID" data-bind-uri="/webrtc/test-request/next-cid/" data-bind-cols='30' data-bind-value="n/a" data-bind-ui="text-line">
+                  <div class="info"><span class="key">Next CID</span><span class="dots">..................</span><span class="value">n/a</span></div>
+                  <div class="text-line">
+                    <div class="enable">
+                      <div class="trigger ui now">
+                        <div class="box non-live">edit</div>
+                        <div class="box live">live edit</div>
+                      </div>
+                    </div>
+                    <div class="input">
+                      <input type="text">
+                      <div class="send box hand"> send</div>
+                      <div class="done box hand"> done</div>
+                    </div>
+                  </div>
+                </li>
+                <li data-bind-key="Call ID" data-bind-uri="/webrtc/test-request/call-id/" data-bind-cols='30' data-bind-value="n/a">
+                  <div class="info"><span class="key">Call ID</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                </li>
+              </ul>
+              <h3>Tester</h3>
+              <ul>
+                <li data-bind-key="Heartbeat" data-bind-uri="/webrtc/tester/heartbeat/" data-bind-cols='30' data-bind-value="n/a" data-bind-formatter="time-ago">
+                  <div class="info"><span class="key">Heartbeat</span><span class="dots">.................</span><span class="value">n/a</span></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+              <div class="panel">
+                <div class="fringe">
+                  <div class="expander">-</div>
+                </div>
+                <div class="content">
+                  <h2>ROBOT 1</h2>
+                  <h3>Robot</h3>
+                  <ul>
+                    <li data-bind-key="IP" data-bind-uri="/robot-1/robot/ip/" data-bind-cols='31' data-bind-value="n/a">
+                      <div class="info"><span class="key">IP</span><span class="dots">.........................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Heartbeat" data-bind-uri="/robot-1/robot/heartbeat/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Heartbeat</span><span class="dots">..................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Status" data-bind-uri="/robot-1/robot/status/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="22">
+                      <div class="info"><span class="key">Status</span><span class="dots">.....................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>View</h3>
+                  <ul>
+                    <li data-bind-key="Lut Enabled" data-bind-uri="/robot-1/view/lut-enabled/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="toggle-yes-no">
+                      <div class="info"><span class="key">Lut Enabled</span><span class="dots">................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui toggle">
+                        <div class="text box">toggle</div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Operator
+                    <div class="edit"></div>
+                  </h3>
+                  <ul>
+                    <li data-bind-key="Is Enabled" data-bind-uri="/robot-1/operator/is-enabled/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="toggle-yes-no">
+                      <div class="info"><span class="key">Is Enabled</span><span class="dots">.................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui toggle">
+                        <div class="text box">toggle</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Accepted Control" data-bind-uri="/robot-1/operator/accepted-control/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Accepted Control</span><span class="dots">...........</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Reset Timer" data-bind-uri="/robot-1/operator/reset-timer/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Reset Timer</span><span class="dots">................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Name" data-bind-uri="/robot-1/operator/name/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="22">
+                      <div class="info"><span class="key">Name</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Location" data-bind-uri="/robot-1/operator/location/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="22">
+                      <div class="info"><span class="key">Location</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Key" data-bind-uri="/robot-1/operator/key/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="22">
+                      <div class="info"><span class="key">Key</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Elevate" data-bind-uri="/robot-1/operator/elevate/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="10">
+                      <div class="info"><span class="key">Elevate</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Controller</h3>
+                  <ul>
+                    <li data-bind-key="Key" data-bind-uri="/robot-1/controller/key/" data-bind-cols='31' data-bind-value="n/a">
+                      <div class="info"><span class="key">Key</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Display Offline" data-bind-uri="/robot-1/controller/display-offline/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="toggle-yes-no">
+                      <div class="info"><span class="key">Display Offline</span><span class="dots">............</span><span class="value">n/a</span></div>
+                      <div class="trigger ui toggle">
+                        <div class="text box">toggle</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Display Info" data-bind-uri="/robot-1/controller/display-info/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="toggle-yes-no">
+                      <div class="info"><span class="key">Display Info</span><span class="dots">...............</span><span class="value">n/a</span></div>
+                      <div class="trigger ui toggle">
+                        <div class="text box">toggle</div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Distance</h3>
+                  <ul>
+                    <li data-bind-key="Sensor 0 Right Far" data-bind-uri="/robot-1/distance/0/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 0 Right Far</span><span class="dots">.........</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 1 Right" data-bind-uri="/robot-1/distance/1/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 1 Right</span><span class="dots">.............</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 2 Left" data-bind-uri="/robot-1/distance/2/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 2 Left</span><span class="dots">..............</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 3 Left Far" data-bind-uri="/robot-1/distance/3/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 3 Left Far</span><span class="dots">..........</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 4 Top Left" data-bind-uri="/robot-1/distance/4/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 4 Top Left</span><span class="dots">..........</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 5 Top Middle" data-bind-uri="/robot-1/distance/5/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 5 Top Middle</span><span class="dots">........</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 6 Top Right" data-bind-uri="/robot-1/distance/6/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 6 Top Right</span><span class="dots">.........</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Movement Requested
+                    <div class="edit"></div>
+                  </h3>
+                  <div class="arrows">
+                    <div class="arrow-row">
+                      <div data-bind-click-now="/robot-1/movement-requested/backward/" class="arrow-btn up"></div>
+                    </div>
+                    <div class="arrow-row">
+                      <div data-bind-click-now="/robot-1/movement-requested/left/" class="arrow-btn left"></div>
+                      <div data-bind-click-now="/robot-1/movement-requested/forward/" class="arrow-btn down"></div>
+                      <div data-bind-click-now="/robot-1/movement-requested/right/" class="arrow-btn right"></div>
+                    </div>
+                  </div>
+                  <ul>
+                    <li data-bind-key="Forward" data-bind-uri="/robot-1/movement-requested/forward/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Forward</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Backward" data-bind-uri="/robot-1/movement-requested/backward/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Backward</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Left" data-bind-uri="/robot-1/movement-requested/left/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Left</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Right" data-bind-uri="/robot-1/movement-requested/right/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Right</span><span class="dots">......................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Tilt" data-bind-uri="/robot-1/movement-requested/tilt/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='254' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Tilt</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Movement Actioned</h3>
+                  <ul>
+                    <li data-bind-key="Forward" data-bind-uri="/robot-1/movement-actioned/forward/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Forward</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Backward" data-bind-uri="/robot-1/movement-actioned/backward/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Backward</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Left" data-bind-uri="/robot-1/movement-actioned/left/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Left</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Right" data-bind-uri="/robot-1/movement-actioned/right/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Right</span><span class="dots">......................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Tilt" data-bind-uri="/robot-1/movement-actioned/tilt/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Tilt</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                    </li>
+                  </ul>
+                  <h3>Robot Video
+                    <div class="edit"></div>
+                  </h3>
+                  <ul>
+                    <li data-bind-key="Host" data-bind-uri="/robot-1/robot-video/host/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="text-line">
+                      <div class="info"><span class="key">Host</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Port" data-bind-uri="/robot-1/robot-video/port/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="text-line">
+                      <div class="info"><span class="key">Port</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Launch" data-bind-uri="/robot-1/robot-video/launch/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Launch</span><span class="dots">.....................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Kill" data-bind-uri="/robot-1/robot-video/kill/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Kill</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Fallback Video
+                    <div class="edit"></div>
+                  </h3>
+                  <ul>
+                    <li data-bind-key="Launch" data-bind-uri="/robot-1/fallback-video/launch/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Launch</span><span class="dots">.....................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Kill" data-bind-uri="/robot-1/fallback-video/kill/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Kill</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Controller Video
+                    <div class="edit"></div>
+                  </h3>
+                  <ul>
+                    <li data-bind-key="Launch" data-bind-uri="/robot-1/controller-video/launch/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Launch</span><span class="dots">.....................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Kill" data-bind-uri="/robot-1/controller-video/kill/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Kill</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="fringe">
+                  <div class="expander">-</div>
+                </div>
+                <div class="content">
+                  <h2>ROBOT 2</h2>
+                  <h3>Robot</h3>
+                  <ul>
+                    <li data-bind-key="IP" data-bind-uri="/robot-2/robot/ip/" data-bind-cols='31' data-bind-value="n/a">
+                      <div class="info"><span class="key">IP</span><span class="dots">.........................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Heartbeat" data-bind-uri="/robot-2/robot/heartbeat/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Heartbeat</span><span class="dots">..................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Status" data-bind-uri="/robot-2/robot/status/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="22">
+                      <div class="info"><span class="key">Status</span><span class="dots">.....................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>View</h3>
+                  <ul>
+                    <li data-bind-key="Lut Enabled" data-bind-uri="/robot-2/view/lut-enabled/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="toggle-yes-no">
+                      <div class="info"><span class="key">Lut Enabled</span><span class="dots">................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui toggle">
+                        <div class="text box">toggle</div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Operator
+                    <div class="edit"></div>
+                  </h3>
+                  <ul>
+                    <li data-bind-key="Is Enabled" data-bind-uri="/robot-2/operator/is-enabled/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="toggle-yes-no">
+                      <div class="info"><span class="key">Is Enabled</span><span class="dots">.................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui toggle">
+                        <div class="text box">toggle</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Accepted Control" data-bind-uri="/robot-2/operator/accepted-control/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Accepted Control</span><span class="dots">...........</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Reset Timer" data-bind-uri="/robot-2/operator/reset-timer/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Reset Timer</span><span class="dots">................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Name" data-bind-uri="/robot-2/operator/name/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="22">
+                      <div class="info"><span class="key">Name</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Location" data-bind-uri="/robot-2/operator/location/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="22">
+                      <div class="info"><span class="key">Location</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Key" data-bind-uri="/robot-2/operator/key/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="22">
+                      <div class="info"><span class="key">Key</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Elevate" data-bind-uri="/robot-2/operator/elevate/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="10">
+                      <div class="info"><span class="key">Elevate</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Controller</h3>
+                  <ul>
+                    <li data-bind-key="Key" data-bind-uri="/robot-2/controller/key/" data-bind-cols='31' data-bind-value="n/a">
+                      <div class="info"><span class="key">Key</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Display Offline" data-bind-uri="/robot-2/controller/display-offline/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="toggle-yes-no">
+                      <div class="info"><span class="key">Display Offline</span><span class="dots">............</span><span class="value">n/a</span></div>
+                      <div class="trigger ui toggle">
+                        <div class="text box">toggle</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Display Info" data-bind-uri="/robot-2/controller/display-info/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="toggle-yes-no">
+                      <div class="info"><span class="key">Display Info</span><span class="dots">...............</span><span class="value">n/a</span></div>
+                      <div class="trigger ui toggle">
+                        <div class="text box">toggle</div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Distance</h3>
+                  <ul>
+                    <li data-bind-key="Sensor 0 Right Far" data-bind-uri="/robot-2/distance/0/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 0 Right Far</span><span class="dots">.........</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 1 Right" data-bind-uri="/robot-2/distance/1/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 1 Right</span><span class="dots">.............</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 2 Left" data-bind-uri="/robot-2/distance/2/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 2 Left</span><span class="dots">..............</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 3 Left Far" data-bind-uri="/robot-2/distance/3/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 3 Left Far</span><span class="dots">..........</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 4 Top Left" data-bind-uri="/robot-2/distance/4/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 4 Top Left</span><span class="dots">..........</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 5 Top Middle" data-bind-uri="/robot-2/distance/5/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 5 Top Middle</span><span class="dots">........</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 6 Top Right" data-bind-uri="/robot-2/distance/6/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 6 Top Right</span><span class="dots">.........</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Movement Requested
+                    <div class="edit"></div>
+                  </h3>
+                  <div class="arrows">
+                    <div class="arrow-row">
+                      <div data-bind-click-now="/robot-2/movement-requested/backward/" class="arrow-btn up"></div>
+                    </div>
+                    <div class="arrow-row">
+                      <div data-bind-click-now="/robot-2/movement-requested/left/" class="arrow-btn left"></div>
+                      <div data-bind-click-now="/robot-2/movement-requested/forward/" class="arrow-btn down"></div>
+                      <div data-bind-click-now="/robot-2/movement-requested/right/" class="arrow-btn right"></div>
+                    </div>
+                  </div>
+                  <ul>
+                    <li data-bind-key="Forward" data-bind-uri="/robot-2/movement-requested/forward/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Forward</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Backward" data-bind-uri="/robot-2/movement-requested/backward/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Backward</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Left" data-bind-uri="/robot-2/movement-requested/left/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Left</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Right" data-bind-uri="/robot-2/movement-requested/right/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Right</span><span class="dots">......................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Tilt" data-bind-uri="/robot-2/movement-requested/tilt/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='254' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Tilt</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Movement Actioned</h3>
+                  <ul>
+                    <li data-bind-key="Forward" data-bind-uri="/robot-2/movement-actioned/forward/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Forward</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Backward" data-bind-uri="/robot-2/movement-actioned/backward/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Backward</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Left" data-bind-uri="/robot-2/movement-actioned/left/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Left</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Right" data-bind-uri="/robot-2/movement-actioned/right/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Right</span><span class="dots">......................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Tilt" data-bind-uri="/robot-2/movement-actioned/tilt/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Tilt</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                    </li>
+                  </ul>
+                  <h3>Robot Video
+                    <div class="edit"></div>
+                  </h3>
+                  <ul>
+                    <li data-bind-key="Host" data-bind-uri="/robot-2/robot-video/host/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="text-line">
+                      <div class="info"><span class="key">Host</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Port" data-bind-uri="/robot-2/robot-video/port/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="text-line">
+                      <div class="info"><span class="key">Port</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Launch" data-bind-uri="/robot-2/robot-video/launch/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Launch</span><span class="dots">.....................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Kill" data-bind-uri="/robot-2/robot-video/kill/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Kill</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Fallback Video
+                    <div class="edit"></div>
+                  </h3>
+                  <ul>
+                    <li data-bind-key="Launch" data-bind-uri="/robot-2/fallback-video/launch/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Launch</span><span class="dots">.....................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Kill" data-bind-uri="/robot-2/fallback-video/kill/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Kill</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Controller Video
+                    <div class="edit"></div>
+                  </h3>
+                  <ul>
+                    <li data-bind-key="Launch" data-bind-uri="/robot-2/controller-video/launch/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Launch</span><span class="dots">.....................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Kill" data-bind-uri="/robot-2/controller-video/kill/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Kill</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="fringe">
+                  <div class="expander">-</div>
+                </div>
+                <div class="content">
+                  <h2>ROBOT 3</h2>
+                  <h3>Robot</h3>
+                  <ul>
+                    <li data-bind-key="IP" data-bind-uri="/robot-3/robot/ip/" data-bind-cols='31' data-bind-value="n/a">
+                      <div class="info"><span class="key">IP</span><span class="dots">.........................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Heartbeat" data-bind-uri="/robot-3/robot/heartbeat/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Heartbeat</span><span class="dots">..................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Status" data-bind-uri="/robot-3/robot/status/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="22">
+                      <div class="info"><span class="key">Status</span><span class="dots">.....................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>View</h3>
+                  <ul>
+                    <li data-bind-key="Lut Enabled" data-bind-uri="/robot-3/view/lut-enabled/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="toggle-yes-no">
+                      <div class="info"><span class="key">Lut Enabled</span><span class="dots">................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui toggle">
+                        <div class="text box">toggle</div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Operator
+                    <div class="edit"></div>
+                  </h3>
+                  <ul>
+                    <li data-bind-key="Is Enabled" data-bind-uri="/robot-3/operator/is-enabled/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="toggle-yes-no">
+                      <div class="info"><span class="key">Is Enabled</span><span class="dots">.................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui toggle">
+                        <div class="text box">toggle</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Accepted Control" data-bind-uri="/robot-3/operator/accepted-control/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Accepted Control</span><span class="dots">...........</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Reset Timer" data-bind-uri="/robot-3/operator/reset-timer/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Reset Timer</span><span class="dots">................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Name" data-bind-uri="/robot-3/operator/name/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="22">
+                      <div class="info"><span class="key">Name</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Location" data-bind-uri="/robot-3/operator/location/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="22">
+                      <div class="info"><span class="key">Location</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Key" data-bind-uri="/robot-3/operator/key/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="22">
+                      <div class="info"><span class="key">Key</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Elevate" data-bind-uri="/robot-3/operator/elevate/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="10">
+                      <div class="info"><span class="key">Elevate</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Controller</h3>
+                  <ul>
+                    <li data-bind-key="Key" data-bind-uri="/robot-3/controller/key/" data-bind-cols='31' data-bind-value="n/a">
+                      <div class="info"><span class="key">Key</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Display Offline" data-bind-uri="/robot-3/controller/display-offline/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="toggle-yes-no">
+                      <div class="info"><span class="key">Display Offline</span><span class="dots">............</span><span class="value">n/a</span></div>
+                      <div class="trigger ui toggle">
+                        <div class="text box">toggle</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Display Info" data-bind-uri="/robot-3/controller/display-info/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="toggle-yes-no">
+                      <div class="info"><span class="key">Display Info</span><span class="dots">...............</span><span class="value">n/a</span></div>
+                      <div class="trigger ui toggle">
+                        <div class="text box">toggle</div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Distance</h3>
+                  <ul>
+                    <li data-bind-key="Sensor 0 Right Far" data-bind-uri="/robot-3/distance/0/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 0 Right Far</span><span class="dots">.........</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 1 Right" data-bind-uri="/robot-3/distance/1/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 1 Right</span><span class="dots">.............</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 2 Left" data-bind-uri="/robot-3/distance/2/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 2 Left</span><span class="dots">..............</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 3 Left Far" data-bind-uri="/robot-3/distance/3/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 3 Left Far</span><span class="dots">..........</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 4 Top Left" data-bind-uri="/robot-3/distance/4/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 4 Top Left</span><span class="dots">..........</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 5 Top Middle" data-bind-uri="/robot-3/distance/5/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 5 Top Middle</span><span class="dots">........</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 6 Top Right" data-bind-uri="/robot-3/distance/6/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 6 Top Right</span><span class="dots">.........</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Movement Requested
+                    <div class="edit"></div>
+                  </h3>
+                  <div class="arrows">
+                    <div class="arrow-row">
+                      <div data-bind-click-now="/robot-3/movement-requested/backward/" class="arrow-btn up"></div>
+                    </div>
+                    <div class="arrow-row">
+                      <div data-bind-click-now="/robot-3/movement-requested/left/" class="arrow-btn left"></div>
+                      <div data-bind-click-now="/robot-3/movement-requested/forward/" class="arrow-btn down"></div>
+                      <div data-bind-click-now="/robot-3/movement-requested/right/" class="arrow-btn right"></div>
+                    </div>
+                  </div>
+                  <ul>
+                    <li data-bind-key="Forward" data-bind-uri="/robot-3/movement-requested/forward/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Forward</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Backward" data-bind-uri="/robot-3/movement-requested/backward/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Backward</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Left" data-bind-uri="/robot-3/movement-requested/left/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Left</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Right" data-bind-uri="/robot-3/movement-requested/right/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Right</span><span class="dots">......................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Tilt" data-bind-uri="/robot-3/movement-requested/tilt/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='254' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Tilt</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Movement Actioned</h3>
+                  <ul>
+                    <li data-bind-key="Forward" data-bind-uri="/robot-3/movement-actioned/forward/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Forward</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Backward" data-bind-uri="/robot-3/movement-actioned/backward/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Backward</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Left" data-bind-uri="/robot-3/movement-actioned/left/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Left</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Right" data-bind-uri="/robot-3/movement-actioned/right/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Right</span><span class="dots">......................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Tilt" data-bind-uri="/robot-3/movement-actioned/tilt/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Tilt</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                    </li>
+                  </ul>
+                  <h3>Robot Video
+                    <div class="edit"></div>
+                  </h3>
+                  <ul>
+                    <li data-bind-key="Host" data-bind-uri="/robot-3/robot-video/host/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="text-line">
+                      <div class="info"><span class="key">Host</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Port" data-bind-uri="/robot-3/robot-video/port/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="text-line">
+                      <div class="info"><span class="key">Port</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Launch" data-bind-uri="/robot-3/robot-video/launch/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Launch</span><span class="dots">.....................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Kill" data-bind-uri="/robot-3/robot-video/kill/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Kill</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Fallback Video
+                    <div class="edit"></div>
+                  </h3>
+                  <ul>
+                    <li data-bind-key="Launch" data-bind-uri="/robot-3/fallback-video/launch/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Launch</span><span class="dots">.....................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Kill" data-bind-uri="/robot-3/fallback-video/kill/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Kill</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Controller Video
+                    <div class="edit"></div>
+                  </h3>
+                  <ul>
+                    <li data-bind-key="Launch" data-bind-uri="/robot-3/controller-video/launch/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Launch</span><span class="dots">.....................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Kill" data-bind-uri="/robot-3/controller-video/kill/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Kill</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="fringe">
+                  <div class="expander">-</div>
+                </div>
+                <div class="content">
+                  <h2>ROBOT 4</h2>
+                  <h3>Robot</h3>
+                  <ul>
+                    <li data-bind-key="IP" data-bind-uri="/robot-4/robot/ip/" data-bind-cols='31' data-bind-value="n/a">
+                      <div class="info"><span class="key">IP</span><span class="dots">.........................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Heartbeat" data-bind-uri="/robot-4/robot/heartbeat/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Heartbeat</span><span class="dots">..................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Status" data-bind-uri="/robot-4/robot/status/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="22">
+                      <div class="info"><span class="key">Status</span><span class="dots">.....................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>View</h3>
+                  <ul>
+                    <li data-bind-key="Lut Enabled" data-bind-uri="/robot-4/view/lut-enabled/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="toggle-yes-no">
+                      <div class="info"><span class="key">Lut Enabled</span><span class="dots">................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui toggle">
+                        <div class="text box">toggle</div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Operator
+                    <div class="edit"></div>
+                  </h3>
+                  <ul>
+                    <li data-bind-key="Is Enabled" data-bind-uri="/robot-4/operator/is-enabled/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="toggle-yes-no">
+                      <div class="info"><span class="key">Is Enabled</span><span class="dots">.................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui toggle">
+                        <div class="text box">toggle</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Accepted Control" data-bind-uri="/robot-4/operator/accepted-control/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Accepted Control</span><span class="dots">...........</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Reset Timer" data-bind-uri="/robot-4/operator/reset-timer/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Reset Timer</span><span class="dots">................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Name" data-bind-uri="/robot-4/operator/name/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="22">
+                      <div class="info"><span class="key">Name</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Location" data-bind-uri="/robot-4/operator/location/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="22">
+                      <div class="info"><span class="key">Location</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Key" data-bind-uri="/robot-4/operator/key/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="22">
+                      <div class="info"><span class="key">Key</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Elevate" data-bind-uri="/robot-4/operator/elevate/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="10">
+                      <div class="info"><span class="key">Elevate</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Controller</h3>
+                  <ul>
+                    <li data-bind-key="Key" data-bind-uri="/robot-4/controller/key/" data-bind-cols='31' data-bind-value="n/a">
+                      <div class="info"><span class="key">Key</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Display Offline" data-bind-uri="/robot-4/controller/display-offline/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="toggle-yes-no">
+                      <div class="info"><span class="key">Display Offline</span><span class="dots">............</span><span class="value">n/a</span></div>
+                      <div class="trigger ui toggle">
+                        <div class="text box">toggle</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Display Info" data-bind-uri="/robot-4/controller/display-info/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="toggle-yes-no">
+                      <div class="info"><span class="key">Display Info</span><span class="dots">...............</span><span class="value">n/a</span></div>
+                      <div class="trigger ui toggle">
+                        <div class="text box">toggle</div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Distance</h3>
+                  <ul>
+                    <li data-bind-key="Sensor 0 Right Far" data-bind-uri="/robot-4/distance/0/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 0 Right Far</span><span class="dots">.........</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 1 Right" data-bind-uri="/robot-4/distance/1/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 1 Right</span><span class="dots">.............</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 2 Left" data-bind-uri="/robot-4/distance/2/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 2 Left</span><span class="dots">..............</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 3 Left Far" data-bind-uri="/robot-4/distance/3/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 3 Left Far</span><span class="dots">..........</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 4 Top Left" data-bind-uri="/robot-4/distance/4/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 4 Top Left</span><span class="dots">..........</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 5 Top Middle" data-bind-uri="/robot-4/distance/5/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 5 Top Middle</span><span class="dots">........</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Sensor 6 Top Right" data-bind-uri="/robot-4/distance/6/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='500000' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Sensor 6 Top Right</span><span class="dots">.........</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Movement Requested
+                    <div class="edit"></div>
+                  </h3>
+                  <div class="arrows">
+                    <div class="arrow-row">
+                      <div data-bind-click-now="/robot-4/movement-requested/backward/" class="arrow-btn up"></div>
+                    </div>
+                    <div class="arrow-row">
+                      <div data-bind-click-now="/robot-4/movement-requested/left/" class="arrow-btn left"></div>
+                      <div data-bind-click-now="/robot-4/movement-requested/forward/" class="arrow-btn down"></div>
+                      <div data-bind-click-now="/robot-4/movement-requested/right/" class="arrow-btn right"></div>
+                    </div>
+                  </div>
+                  <ul>
+                    <li data-bind-key="Forward" data-bind-uri="/robot-4/movement-requested/forward/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Forward</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Backward" data-bind-uri="/robot-4/movement-requested/backward/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Backward</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Left" data-bind-uri="/robot-4/movement-requested/left/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Left</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Right" data-bind-uri="/robot-4/movement-requested/right/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Right</span><span class="dots">......................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Tilt" data-bind-uri="/robot-4/movement-requested/tilt/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="range" data-bind-ui="slide" data-bind-min='0' data-bind-max='254' data-bind-step="1">
+                      <div class="slider formatter">
+                        <div class="bar formatter"></div>
+                      </div>
+                      <div class="info"><span class="key">Tilt</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="slider ui">
+                        <div class="bar ui"></div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Movement Actioned</h3>
+                  <ul>
+                    <li data-bind-key="Forward" data-bind-uri="/robot-4/movement-actioned/forward/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Forward</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Backward" data-bind-uri="/robot-4/movement-actioned/backward/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Backward</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Left" data-bind-uri="/robot-4/movement-actioned/left/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Left</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Right" data-bind-uri="/robot-4/movement-actioned/right/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Right</span><span class="dots">......................</span><span class="value">n/a</span></div>
+                    </li>
+                    <li data-bind-key="Tilt" data-bind-uri="/robot-4/movement-actioned/tilt/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago">
+                      <div class="info"><span class="key">Tilt</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                    </li>
+                  </ul>
+                  <h3>Robot Video
+                    <div class="edit"></div>
+                  </h3>
+                  <ul>
+                    <li data-bind-key="Host" data-bind-uri="/robot-4/robot-video/host/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="text-line">
+                      <div class="info"><span class="key">Host</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Port" data-bind-uri="/robot-4/robot-video/port/" data-bind-cols='31' data-bind-value="n/a" data-bind-ui="text-line">
+                      <div class="info"><span class="key">Port</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="text-line">
+                        <div class="enable">
+                          <div class="trigger ui now">
+                            <div class="box non-live">edit</div>
+                            <div class="box live">live edit</div>
+                          </div>
+                        </div>
+                        <div class="input">
+                          <input type="text">
+                          <div class="send box hand"> send</div>
+                          <div class="done box hand"> done</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Launch" data-bind-uri="/robot-4/robot-video/launch/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Launch</span><span class="dots">.....................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Kill" data-bind-uri="/robot-4/robot-video/kill/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Kill</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Fallback Video
+                    <div class="edit"></div>
+                  </h3>
+                  <ul>
+                    <li data-bind-key="Launch" data-bind-uri="/robot-4/fallback-video/launch/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Launch</span><span class="dots">.....................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Kill" data-bind-uri="/robot-4/fallback-video/kill/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Kill</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                  </ul>
+                  <h3>Controller Video
+                    <div class="edit"></div>
+                  </h3>
+                  <ul>
+                    <li data-bind-key="Launch" data-bind-uri="/robot-4/controller-video/launch/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Launch</span><span class="dots">.....................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                    <li data-bind-key="Kill" data-bind-uri="/robot-4/controller-video/kill/" data-bind-cols='31' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                      <div class="info"><span class="key">Kill</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                      <div class="trigger ui now">
+                        <div class="text box">trigger</div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+      </div>
+      <script src="js/libs/jquery-2.1.0.min.js"></script>
+      <script src="js/libs/W.min.js"></script>
+      <script src="js/libs/restesque.js"></script>
+      <script src="js/libs/lodash.min.js"></script>
+      <script src="js/connection-state.js"></script>
+      <script src="js/main.ui.js"></script>
+    </div>
+  </body>
+</html>

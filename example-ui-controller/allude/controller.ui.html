@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<!-- - Config-->
+<!-- - UI Elements-->
+<html lang="en">
+  <head>
+    <title>*Controller* - After Dark</title>
+    <link rel="stylesheet" type="text/css" href="css/ui.css">
+    <script src="/watch.js"></script>
+  </head>
+  <body>
+    <!-- - utils-->
+    <div id="header">
+      <h1>X24 <span>Controller</span></h1>
+      <div id="state">
+        <div class="badge connection bad">DISCONNECTED</div>
+      </div>
+    </div>
+    <div id="panels">                             
+      <div class="row">
+        <div class="panel">
+          <div class="fringe">
+            <div class="expander">-</div>
+          </div>
+          <div class="content">
+            <h2>x24</h2>
+            <div class="wrap">
+              <h3>Mode
+                <div class="edit"></div>
+              </h3>
+              <ul>
+                <li data-bind-key="Debug" data-bind-uri="/x24/config/debug/" data-bind-cols='25' data-bind-value="n/a" data-bind-ui="toggle-yes-no">
+                  <div class="info"><span class="key">Debug</span><span class="dots">................</span><span class="value">n/a</span></div>
+                  <div class="trigger ui toggle">
+                    <div class="text box">toggle</div>
+                  </div>
+                </li>
+                <li data-bind-key="Image" data-bind-uri="/x24/config/git/" data-bind-cols='25' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                  <div class="info"><span class="key">Image</span><span class="dots">................</span><span class="value">n/a</span></div>
+                  <div class="text-line">
+                    <div class="enable">
+                      <div class="trigger ui now">
+                        <div class="box non-live">edit</div>
+                        <div class="box live">live edit</div>
+                      </div>
+                    </div>
+                    <div class="input">
+                      <input type="text">
+                      <div class="send box hand"> send</div>
+                      <div class="done box hand"> done</div>
+                    </div>
+                  </div>
+                </li>
+                <li data-bind-key="Invert" data-bind-uri="/x24/config/invert/" data-bind-cols='25' data-bind-value="n/a" data-bind-ui="toggle-yes-no">
+                  <div class="info"><span class="key">Invert</span><span class="dots">...............</span><span class="value">n/a</span></div>
+                  <div class="trigger ui toggle">
+                    <div class="text box">toggle</div>
+                  </div>
+                </li>
+                <!-- +item( cols=width, uri='/x24/config/launch/', key='Launch', formatter='time-ago', ui='now' )-->
+                <!-- +item( cols=width, uri='/x24/config/kill/',   key='Kill',   formatter='time-ago', ui='now' )-->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="panel">
+          <div class="fringe">
+            <div class="expander">-</div>
+          </div>
+          <div class="content">
+            <h2>Unlinked screen</h2>
+            <div class="wrap">
+                    <h3>Screen -1 _ -1</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/-1_-1/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/-1_-1/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/-1_-1/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/-1_-1/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/-1_-1/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/-1_-1/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="panel">
+          <div class="fringe">
+            <div class="expander">-</div>
+          </div>
+          <div class="content">
+            <h2>Row 0</h2>
+            <div class="wrap">
+                    <h3>Screen 0 _ 0</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/0_0/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/0_0/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/0_0/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/0_0/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/0_0/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/0_0/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 1 _ 0</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/1_0/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/1_0/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/1_0/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/1_0/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/1_0/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/1_0/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 2 _ 0</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/2_0/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/2_0/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/2_0/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/2_0/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/2_0/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/2_0/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 3 _ 0</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/3_0/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/3_0/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/3_0/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/3_0/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/3_0/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/3_0/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 4 _ 0</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/4_0/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/4_0/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/4_0/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/4_0/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/4_0/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/4_0/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 5 _ 0</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/5_0/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/5_0/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/5_0/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/5_0/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/5_0/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/5_0/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 6 _ 0</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/6_0/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/6_0/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/6_0/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/6_0/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/6_0/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/6_0/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 7 _ 0</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/7_0/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/7_0/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/7_0/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/7_0/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/7_0/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/7_0/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="fringe">
+            <div class="expander">-</div>
+          </div>
+          <div class="content">
+            <h2>Row 1</h2>
+            <div class="wrap">
+                    <h3>Screen 0 _ 1</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/0_1/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/0_1/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/0_1/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/0_1/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/0_1/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/0_1/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 1 _ 1</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/1_1/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/1_1/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/1_1/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/1_1/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/1_1/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/1_1/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 2 _ 1</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/2_1/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/2_1/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/2_1/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/2_1/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/2_1/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/2_1/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 3 _ 1</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/3_1/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/3_1/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/3_1/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/3_1/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/3_1/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/3_1/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 4 _ 1</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/4_1/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/4_1/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/4_1/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/4_1/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/4_1/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/4_1/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 5 _ 1</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/5_1/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/5_1/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/5_1/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/5_1/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/5_1/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/5_1/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 6 _ 1</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/6_1/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/6_1/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/6_1/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/6_1/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/6_1/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/6_1/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 7 _ 1</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/7_1/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/7_1/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/7_1/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/7_1/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/7_1/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/7_1/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="fringe">
+            <div class="expander">-</div>
+          </div>
+          <div class="content">
+            <h2>Row 2</h2>
+            <div class="wrap">
+                    <h3>Screen 0 _ 2</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/0_2/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/0_2/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/0_2/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/0_2/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/0_2/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/0_2/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 1 _ 2</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/1_2/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/1_2/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/1_2/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/1_2/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/1_2/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/1_2/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 2 _ 2</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/2_2/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/2_2/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/2_2/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/2_2/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/2_2/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/2_2/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 3 _ 2</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/3_2/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/3_2/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/3_2/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/3_2/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/3_2/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/3_2/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 4 _ 2</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/4_2/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/4_2/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/4_2/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/4_2/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/4_2/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/4_2/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 5 _ 2</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/5_2/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/5_2/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/5_2/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/5_2/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/5_2/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/5_2/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 6 _ 2</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/6_2/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/6_2/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/6_2/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/6_2/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/6_2/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/6_2/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+                    <h3>Screen 7 _ 2</h3>
+                    <ul>
+                      <li>-- Display  --</li>
+                      <li data-bind-key="Image" data-bind-uri="/screens/7_2/image/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Image</span><span class="dots">........................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- +item( cols=width, uri=root+'/kill/',   key='Kill',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/kill-self/',   key='Kill Self',     formatter='time-ago', ui='now' )-->
+                      <li data-bind-key="Launch" data-bind-uri="/screens/7_2/launch/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago" data-bind-ui="now">
+                        <div class="info"><span class="key">Launch</span><span class="dots">.......................</span><span class="value">n/a</span></div>
+                        <div class="trigger ui now">
+                          <div class="text box">trigger</div>
+                        </div>
+                      </li>
+                      <li data-bind-key="Mac Target" data-bind-uri="/screens/7_2/mac-target/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-ui="text-line" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Target</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                        <div class="text-line">
+                          <div class="enable">
+                            <div class="trigger ui now">
+                              <div class="box non-live">edit</div>
+                              <div class="box live">live edit</div>
+                            </div>
+                          </div>
+                          <div class="input">
+                            <input type="text">
+                            <div class="send box hand"> send</div>
+                            <div class="done box hand"> done</div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>-- State --</li>
+                      <li data-bind-key="Heartbeat" data-bind-uri="/screens/7_2/heartbeat/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="time-ago">
+                        <div class="info"><span class="key">Heartbeat</span><span class="dots">....................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="Mac Latest" data-bind-uri="/screens/7_2/mac-latest/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">Mac Latest</span><span class="dots">...................</span><span class="value">n/a</span></div>
+                      </li>
+                      <li data-bind-key="IP" data-bind-uri="/screens/7_2/ip/" data-bind-cols='33' data-bind-value="n/a" data-bind-formatter="char-limit" data-bind-char-limit="30">
+                        <div class="info"><span class="key">IP</span><span class="dots">...........................</span><span class="value">n/a</span></div>
+                      </li>
+                      <!-- li -- Content ---->
+                      <!-- +item( cols=width, uri=root+'/pull/',       key='Pull',     formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/pull-requested/',       key='Pull Requested',     formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/clone/',      key='Clone',    formatter='time-ago', ui='now' )-->
+                      <!-- +item( cols=width, uri=root+'/clone-requested/',      key='Clone Requested',    formatter='time-ago' )-->
+                      <!-- +item( cols=width, uri=root+'/latest/',     key='Latest',   formatter='time-ago' )-->
+                    </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <h2>Mac Addresses</h2>
+        <pre id="macAddresses"></pre>
+      </div>
+      <script src="js/libs/jquery-2.1.0.min.js"></script>
+      <script src="js/libs/W.min.js"></script>
+      <script src="js/libs/restesque.js"></script>
+      <script src="js/libs/lodash.min.js"></script>
+      <script src="js/connection-state.js"></script>
+      <script>
+        var connectTo = 'ws://localhost:6969/';
+        
+      </script>
+      <script src="js/main.ui.js"></script>
+    </div>
+  </body>
+</html>
