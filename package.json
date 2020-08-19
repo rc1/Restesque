@@ -22,16 +22,16 @@
   "author": "rc1",
   "devDependencies": {
     "grunt": "^0.4.5",
-    "grunt-docco": "^0.3.3",
+    "grunt-bump": "^0.8.0",
     "grunt-contrib-concat": "^0.4.0",
     "grunt-contrib-uglify": "^0.4.0",
-    "grunt-bump": "0.0.14"
+    "grunt-docco": "^0.3.3"
   },
   "dependencies": {
-    "express": "^4.4.1",
-    "jshint": "^2.5.2",
+    "express": "^4.17.1",
+    "jshint": "^2.12.0",
+    "node-sass": "^4.14.1",
     "redis": "^0.10.3",
-    "servant": "^4.4.0",
     "w-js": "^4.50.0",
     "ws": "^0.4.31"
   }

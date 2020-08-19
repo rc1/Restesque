@@ -23,7 +23,7 @@ if ( process.env.REDISTOGO_URL ) {
     redisClient.auth( rtg.auth.split( ":" )[ 1 ] );
 } else {
     // - Local Configuration
-    redisClient = redis.createClient();
+    redisClient = redis.createClient( process.env.REDIS_PORT, process.env.REDIS_HOST);
 	redisClient.select( process.env.REDIS_DB || 3 );
 }
 // Select the correct db
