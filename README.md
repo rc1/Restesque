@@ -1,7 +1,5 @@
 # Restesque
 
-> "Make awesome shit", Ross Cairns
-
 ## Run Server
 
     npm run server
